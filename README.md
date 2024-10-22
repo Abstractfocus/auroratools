@@ -1,2 +1,2 @@
-# auroratools
+# aurora-tools
 tools for aurora 
