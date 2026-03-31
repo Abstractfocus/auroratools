@@ -9,7 +9,18 @@
 <body>
     <div class="container">
         <h1>Aurora Technologies Tools</h1>
-        
+
+        <nav class="tool-nav" id="toolNav">
+            <button class="tab-btn active" data-target="smbAssessment">SMB Self-Assessment</button>
+            <button class="tab-btn" data-target="roiCalculator">ROI Calculator</button>
+            <button class="tab-btn" data-target="tcoCalculator">TCO Calculator</button>
+            <button class="tab-btn" data-target="timelineEstimator">Timeline Estimator</button>
+            <button class="tab-btn" data-target="digitalReadiness">Digital Readiness</button>
+            <button class="tab-btn" data-target="benchmarking">Benchmarking</button>
+            <button class="tab-btn" data-target="budgetPlanner">Budget Planner</button>
+            <button class="tab-btn" data-target="riskAssessment">Risk Assessment</button>
+        </nav>
+
         <div id="smbAssessment" class="tool">
             <h2>SMB Self-Assessment Tool</h2>
             <div id="questions"></div>
@@ -101,11 +112,118 @@
             <button onclick="calculateReadiness()">Calculate Readiness</button>
             <div id="readinessResult"></div>
         </div>
+
+        <div id="benchmarking" class="tool">
+            <h2>Competitive Benchmarking Tool</h2>
+            <div class="input-group">
+                <label for="benchIndustry">Industry</label>
+                <select id="benchIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="benchRevenue">Annual Revenue (USD)</label>
+                <input type="number" id="benchRevenue" placeholder="Enter annual revenue">
+            </div>
+            <div class="input-group">
+                <label for="benchEmployees">Number of Employees</label>
+                <input type="number" id="benchEmployees" placeholder="Enter number of employees">
+            </div>
+            <div class="input-group">
+                <label for="benchSatisfaction">Customer Satisfaction Score (1-10)</label>
+                <input type="number" id="benchSatisfaction" placeholder="Enter score (1-10)" min="1" max="10">
+            </div>
+            <div class="input-group">
+                <label for="benchMarketShare">Market Share (%)</label>
+                <input type="number" id="benchMarketShare" placeholder="Enter market share percentage" min="0" max="100">
+            </div>
+            <button onclick="calculateBenchmark()">Compare Benchmarks</button>
+            <div id="benchmarkResult"></div>
+        </div>
+
+        <div id="budgetPlanner" class="tool">
+            <h2>Budget Planner Tool</h2>
+            <div class="input-group">
+                <label for="totalBudget">Total Budget (USD)</label>
+                <input type="number" id="totalBudget" placeholder="Enter total budget">
+            </div>
+            <div class="input-group">
+                <label for="budgetPersonnel">Personnel (%)</label>
+                <input type="number" id="budgetPersonnel" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="budgetTechnology">Technology (%)</label>
+                <input type="number" id="budgetTechnology" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="budgetMarketing">Marketing (%)</label>
+                <input type="number" id="budgetMarketing" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="budgetOperations">Operations (%)</label>
+                <input type="number" id="budgetOperations" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="budgetTraining">Training (%)</label>
+                <input type="number" id="budgetTraining" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="budgetContingency">Contingency (%)</label>
+                <input type="number" id="budgetContingency" placeholder="Enter percentage" min="0" max="100">
+            </div>
+            <button onclick="calculateBudget()">Calculate Budget</button>
+            <div id="budgetResult"></div>
+        </div>
+
+        <div id="riskAssessment" class="tool">
+            <h2>Risk Assessment Matrix</h2>
+            <div class="input-group">
+                <label for="riskName">Risk Name</label>
+                <input type="text" id="riskName" placeholder="Enter risk description">
+            </div>
+            <div class="input-group">
+                <label for="riskLikelihood">Likelihood (1-5)</label>
+                <select id="riskLikelihood">
+                    <option value="1">1 - Rare</option>
+                    <option value="2">2 - Unlikely</option>
+                    <option value="3">3 - Possible</option>
+                    <option value="4">4 - Likely</option>
+                    <option value="5">5 - Almost Certain</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="riskImpact">Impact (1-5)</label>
+                <select id="riskImpact">
+                    <option value="1">1 - Negligible</option>
+                    <option value="2">2 - Minor</option>
+                    <option value="3">3 - Moderate</option>
+                    <option value="4">4 - Major</option>
+                    <option value="5">5 - Severe</option>
+                </select>
+            </div>
+            <button onclick="addRisk()">Add Risk</button>
+            <button onclick="calculateRiskAssessment()">Generate Assessment</button>
+            <div id="riskResult"></div>
+        </div>
     </div>
+    <script src="charts.js"></script>
+    <script src="export.js"></script>
     <script src="assessment.js"></script>
     <script src="roi.js"></script>
     <script src="tco.js"></script>
     <script src="timeline.js"></script>
     <script src="readiness.js"></script>
+    <script src="benchmarking.js"></script>
+    <script src="budget.js"></script>
+    <script src="risk.js"></script>
+    <script src="sharing.js"></script>
+    <script src="nav.js"></script>
+    <script src="darkmode.js"></script>
 </body>
 </html>

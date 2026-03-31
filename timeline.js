@@ -3,8 +3,18 @@ function calculateTimeline() {
     const teamSize = parseInt(document.getElementById('teamSize').value);
     const complexity = document.getElementById('complexity').value;
 
-    if (!projectScope || !teamSize || !complexity) {
-        document.getElementById('timelineResult').innerHTML = '<p class="error">Please fill in all fields.</p>';
+    const errors = [];
+    if (!projectScope) {
+        errors.push('Please select a project scope.');
+    }
+    if (!complexity) {
+        errors.push('Please select a complexity level.');
+    }
+    if (isNaN(teamSize) || teamSize < 1) {
+        errors.push('Team size must be at least 1.');
+    }
+    if (errors.length > 0) {
+        document.getElementById('timelineResult').innerHTML = errors.map(e => `<p class="error">${e}</p>`).join('');
         return;
     }
 
@@ -46,5 +56,7 @@ function calculateTimeline() {
             `).join('')}
         </div>
         <p>This is an estimate based on industry benchmarks. Contact Aurora Technologies for a detailed project plan.</p>
+        <button class="export-btn" onclick="exportToCSV('timeline-results.csv', ['Phase', 'Duration (weeks)'], [${phaseDetails.map(p => "['" + p.name + "', '" + p.weeks + "']").join(', ')}])">Export CSV</button>
     `;
+    if (typeof addShareButton === 'function') addShareButton('timeline');
 }

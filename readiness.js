@@ -21,10 +21,14 @@ function createReadinessQuestions() {
             <input type="range" min="1" max="5" value="3" class="slider" id="rq${index}">
             <div class="slider-labels">
                 <span>Not at All</span>
+                <span class="slider-value" id="rq${index}-value">3</span>
                 <span>Fully Implemented</span>
             </div>
         `;
         container.appendChild(questionDiv);
+        document.getElementById(`rq${index}`).addEventListener('input', function() {
+            document.getElementById(`rq${index}-value`).textContent = this.value;
+        });
     });
 }
 
@@ -72,6 +76,15 @@ function calculateReadiness() {
                 </div>
             `).join('')}
         </div>
+        <div style="margin:16px 0;">${(() => {
+            const donutColors = ['#40E0D0', '#28a745', '#ffc107', '#dc3545', '#6f42c1'];
+            const donutData = results.map((r, i) => ({
+                label: r.category,
+                value: parseFloat(r.score.toFixed(1)),
+                color: donutColors[i % donutColors.length]
+            }));
+            return createDonutChart(donutData, { size: 200, title: 'Readiness Breakdown' });
+        })()}</div>
         <p>Contact Aurora Technologies for a comprehensive digital transformation roadmap tailored to your organization.</p>
     `;
 }

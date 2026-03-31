@@ -35,6 +35,15 @@ h1, h2 {
 input[type="range"] {
     width: 100%;
     margin: 10px 0;
+    accent-color: #40E0D0;
+}
+
+.slider-value {
+    display: inline-block;
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #0A0A2A;
 }
 
 input[type="number"] {
@@ -65,7 +74,7 @@ button:hover {
     background-color: #3CC6B7;
 }
 
-#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult {
+#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult, #benchmarkResult, #budgetResult, #riskResult {
     margin-top: 20px;
     padding: 15px;
     border-radius: 4px;
@@ -200,10 +209,365 @@ select {
     color: #dc3545;
 }
 
+/* Benchmarking labels */
+.bench-above { color: #28a745; font-weight: 600; }
+.bench-average { color: #ffc107; font-weight: 600; }
+.bench-below { color: #dc3545; font-weight: 600; }
+
+/* Risk category labels */
+.risk-critical { color: #dc3545; font-weight: 700; }
+.risk-high { color: #fd7e14; font-weight: 600; }
+.risk-medium { color: #ffc107; font-weight: 600; }
+.risk-low { color: #28a745; font-weight: 600; }
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
 .slider-labels {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
     font-size: 0.8em;
     color: #666;
+}
+
+/* Tab navigation */
+.tool-nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    padding: 6px;
+    background-color: #0A0A2A;
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #40E0D0 #0A0A2A;
+}
+
+.tool-nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+.tool-nav::-webkit-scrollbar-track {
+    background: #0A0A2A;
+    border-radius: 2px;
+}
+
+.tool-nav::-webkit-scrollbar-thumb {
+    background: #40E0D0;
+    border-radius: 2px;
+}
+
+.tab-btn {
+    flex-shrink: 0;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-btn:hover {
+    background-color: rgba(64, 224, 208, 0.15);
+    color: #fff;
+}
+
+.tab-btn.active {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+    font-weight: 600;
+}
+
+.tool.tool-hidden {
+    display: none;
+}
+
+/* Result fade-in + slide-up animation */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#assessmentResult:not(:empty),
+#roiResult:not(:empty),
+#tcoResult:not(:empty),
+#timelineResult:not(:empty),
+#readinessResult:not(:empty),
+#benchmarkResult:not(:empty),
+#budgetResult:not(:empty),
+#riskResult:not(:empty) {
+    animation: fadeSlideIn 0.4s ease-out;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    .tool {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    .result-item {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+    .readiness-bar-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .bar-label {
+        width: 100%;
+    }
+    .bar-score {
+        text-align: left;
+    }
+    .phase-info {
+        font-size: 0.8em;
+    }
+    .tool-nav {
+        padding: 4px;
+        gap: 2px;
+    }
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* ===== Dark Mode (system preference) ===== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+    }
+    .container h1 {
+        color: #40E0D0;
+    }
+    h2 {
+        color: #40E0D0;
+    }
+    .tool {
+        background-color: #16213e;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    input[type="number"],
+    input[type="text"],
+    select {
+        background-color: #1a1a2e;
+        color: #e0e0e0;
+        border-color: #333;
+    }
+    label {
+        color: #b0b0b0;
+    }
+    #assessmentResult,
+    #roiResult,
+    #tcoResult,
+    #timelineResult,
+    #readinessResult,
+    #benchmarkResult,
+    #budgetResult,
+    #riskResult {
+        background-color: #1a1a2e;
+    }
+    .result-item {
+        background-color: #16213e;
+    }
+    .result-label {
+        color: #b0b0b0;
+    }
+    .result-value {
+        color: #e0e0e0;
+    }
+    .slider-labels span,
+    .phase-name {
+        color: #b0b0b0;
+    }
+    .bar-track {
+        background-color: #333;
+    }
+    .bar-score,
+    .overall-score {
+        color: #e0e0e0;
+    }
+}
+
+/* ===== Dark Mode (manual toggle) ===== */
+body.dark-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+body.dark-mode .container h1 {
+    color: #40E0D0;
+}
+body.dark-mode h2 {
+    color: #40E0D0;
+}
+body.dark-mode .tool {
+    background-color: #16213e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+body.dark-mode input[type="number"],
+body.dark-mode input[type="text"],
+body.dark-mode select {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+body.dark-mode label {
+    color: #b0b0b0;
+}
+body.dark-mode #assessmentResult,
+body.dark-mode #roiResult,
+body.dark-mode #tcoResult,
+body.dark-mode #timelineResult,
+body.dark-mode #readinessResult,
+body.dark-mode #benchmarkResult,
+body.dark-mode #budgetResult,
+body.dark-mode #riskResult {
+    background-color: #1a1a2e;
+}
+body.dark-mode .result-item {
+    background-color: #16213e;
+}
+body.dark-mode .result-label {
+    color: #b0b0b0;
+}
+body.dark-mode .result-value {
+    color: #e0e0e0;
+}
+body.dark-mode .slider-labels span,
+body.dark-mode .phase-name {
+    color: #b0b0b0;
+}
+body.dark-mode .bar-track {
+    background-color: #333;
+}
+body.dark-mode .bar-score,
+body.dark-mode .overall-score {
+    color: #e0e0e0;
+}
+
+/* Share button */
+.share-btn {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.share-btn:hover {
+    background-color: #3CC6B7;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 9999;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark-mode .dark-mode-toggle {
+    background-color: #16213e;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+/* Export button */
+.export-btn {
+    background-color: #0A0A2A;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+.export-btn:hover {
+    background-color: #1a1a3e;
+}
+
+/* Comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+.comparison-table th, .comparison-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.comparison-table th {
+    background-color: #0A0A2A;
+    color: white;
+    font-weight: 600;
+}
+.comparison-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+body.dark-mode .comparison-table th {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+}
+body.dark-mode .comparison-table td {
+    border-bottom-color: #333;
+}
+body.dark-mode .comparison-table tr:nth-child(even) {
+    background-color: #1a1a2e;
+}
+
+/* Print-friendly styles */
+@media print {
+    .tool-nav, .dark-mode-toggle, button:not(.tab-btn) { display: none; }
+    .tool.tool-hidden { display: block !important; }
+    .tool { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    body { background: white; color: black; }
+    .export-btn { display: none !important; }
 }

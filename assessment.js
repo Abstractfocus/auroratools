@@ -20,10 +20,14 @@ function createQuestions() {
             <input type="range" min="1" max="5" value="3" class="slider" id="q${index}">
             <div class="slider-labels">
                 <span>Strongly Disagree</span>
+                <span class="slider-value" id="q${index}-value">3</span>
                 <span>Strongly Agree</span>
             </div>
         `;
         questionsDiv.appendChild(questionDiv);
+        document.getElementById(`q${index}`).addEventListener('input', function() {
+            document.getElementById(`q${index}-value`).textContent = this.value;
+        });
     });
 }
 
@@ -39,9 +43,20 @@ function calculateAssessment() {
         return { category, score: average.toFixed(1) };
     });
 
+    const chartColors = ['#40E0D0', '#28a745', '#6f42c1'];
+    const chartData = results.map((r, i) => ({
+        label: r.category,
+        value: parseFloat(r.score),
+        maxValue: 5,
+        displayValue: r.score + '/5',
+        color: chartColors[i % chartColors.length]
+    }));
+    const barChart = createBarChart(chartData, { width: 420, barHeight: 30, title: 'Category Scores' });
+
     const resultDiv = document.getElementById('assessmentResult');
-    resultDiv.innerHTML = '<h3>Results:</h3>' + 
+    resultDiv.innerHTML = '<h3>Results:</h3>' +
         results.map(r => `<p>${r.category}: ${r.score}/5</p>`).join('') +
+        '<div style="margin:16px 0;">' + barChart + '</div>' +
         '<p>Contact Aurora Technologies for a detailed analysis and tailored solutions to improve your business performance.</p>';
 }
 

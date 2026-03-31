@@ -1,0 +1,23 @@
+{
+  "name": "auroratools",
+  "version": "1.0.0",
+  "description": "tools for aurora",
+  "main": "assessment.js",
+  "scripts": {
+    "test": "jest",
+    "build": "esbuild src/main.js --bundle --outfile=dist/bundle.js --minify --format=iife",
+    "build:watch": "esbuild src/main.js --bundle --outfile=dist/bundle.js --watch --format=iife"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:37981/git/Abstractfocus/auroratools"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.27.4",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0"
+  }
+}
