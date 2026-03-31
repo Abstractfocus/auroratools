@@ -199,3 +199,6 @@ function renderTrends(clientId) {
 
     document.getElementById('dashboardResult').innerHTML = tableHtml + chartHtml;
 }
+
+// Initialize dashboard on load
+document.addEventListener('DOMContentLoaded', renderDashboard);

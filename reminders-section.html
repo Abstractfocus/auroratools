@@ -1,0 +1,51 @@
+<div id="assessmentReminders" class="tool">
+    <h2>Recurring Assessment Reminders</h2>
+
+    <div id="remindersSummary" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;"></div>
+
+    <h3 style="margin-bottom:10px;color:#0A0A2A;">Add Reminder</h3>
+    <div class="input-group">
+        <label for="reminderClientName">Client Name *</label>
+        <input type="text" id="reminderClientName" placeholder="Enter client name">
+    </div>
+    <div class="input-group">
+        <label for="reminderCompany">Company *</label>
+        <input type="text" id="reminderCompany" placeholder="Enter company name">
+    </div>
+    <div class="input-group">
+        <label for="reminderEmail">Email</label>
+        <input type="text" id="reminderEmail" placeholder="Enter email address">
+    </div>
+    <div class="input-group">
+        <label for="reminderType">Assessment Type</label>
+        <select id="reminderType">
+            <option value="SMB Assessment">SMB Assessment</option>
+            <option value="Digital Readiness">Digital Readiness</option>
+            <option value="Full Review">Full Review</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="reminderFrequency">Frequency</label>
+        <select id="reminderFrequency">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Semi-Annual">Semi-Annual</option>
+            <option value="Annual">Annual</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="reminderStartDate">Start Date *</label>
+        <input type="date" id="reminderStartDate">
+    </div>
+    <div class="input-group">
+        <label for="reminderNotes">Notes</label>
+        <textarea id="reminderNotes" rows="2" placeholder="Any additional notes..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button onclick="addReminder()">Add Reminder</button>
+        <button onclick="exportReminders()" style="background-color:#0A0A2A;">Export CSV</button>
+    </div>
+
+    <div id="remindersResult" style="margin-top:20px;"></div>
+</div>

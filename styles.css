@@ -74,7 +74,7 @@ button:hover {
     background-color: #3CC6B7;
 }
 
-#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult, #benchmarkResult, #budgetResult, #riskResult, #proposalResult, #dashboardResult, #reportCardResult, #scenarioResult {
+#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult, #benchmarkResult, #budgetResult, #riskResult, #proposalResult, #dashboardResult, #reportCardResult, #scenarioResult, #scopingResult, #meetingPrepResult {
     margin-top: 20px;
     padding: 15px;
     border-radius: 4px;
@@ -323,7 +323,10 @@ input[type="text"] {
 #riskResult:not(:empty),
 #proposalResult:not(:empty),
 #dashboardResult:not(:empty),
-#reportCardResult:not(:empty) {
+#reportCardResult:not(:empty),
+#scenarioResult:not(:empty),
+#scopingResult:not(:empty),
+#meetingPrepResult:not(:empty) {
     animation: fadeSlideIn 0.4s ease-out;
 }
 
@@ -404,7 +407,12 @@ input[type="text"] {
     #benchmarkResult,
     #budgetResult,
     #riskResult,
-    #proposalResult {
+    #proposalResult,
+    #dashboardResult,
+    #reportCardResult,
+    #scenarioResult,
+    #scopingResult,
+    #meetingPrepResult {
         background-color: #1a1a2e;
     }
     .result-item {
@@ -462,7 +470,12 @@ body.dark-mode #readinessResult,
 body.dark-mode #benchmarkResult,
 body.dark-mode #budgetResult,
 body.dark-mode #riskResult,
-body.dark-mode #proposalResult {
+body.dark-mode #proposalResult,
+body.dark-mode #dashboardResult,
+body.dark-mode #reportCardResult,
+body.dark-mode #scenarioResult,
+body.dark-mode #scopingResult,
+body.dark-mode #meetingPrepResult {
     background-color: #1a1a2e;
 }
 body.dark-mode .result-item {
@@ -1026,6 +1039,142 @@ body.dark-mode .proposal-actions {
     }
     .proposal-actions {
         border-top-color: #333;
+    }
+}
+
+/* ===== Scenario Planner ===== */
+.scenario-columns {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.scenario-column {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+}
+
+.scenario-column h3 {
+    margin-top: 0;
+    font-size: 1em;
+    color: #0A0A2A;
+}
+
+.scenario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.scenario-table th,
+.scenario-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.scenario-table th {
+    background-color: #0A0A2A;
+    color: white;
+    font-weight: 600;
+}
+
+.scenario-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.scenario-charts {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.scenario-recommendation {
+    margin-top: 20px;
+    padding: 16px;
+    border-left: 4px solid #28a745;
+    background-color: #f0fff4;
+    border-radius: 4px;
+}
+
+.scenario-recommendation h3 {
+    margin-top: 0;
+    color: #28a745;
+}
+
+/* Scenario dark mode (manual) */
+body.dark-mode .scenario-column {
+    background-color: #1a1a2e;
+    border-color: #333;
+}
+
+body.dark-mode .scenario-column h3 {
+    color: #40E0D0;
+}
+
+body.dark-mode .scenario-table th {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+}
+
+body.dark-mode .scenario-table td {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .scenario-table tr:nth-child(even) {
+    background-color: #1a1a2e;
+}
+
+body.dark-mode .scenario-recommendation {
+    background-color: #1a2e1a;
+    border-left-color: #28a745;
+}
+
+body.dark-mode .scenario-recommendation h3 {
+    color: #28a745;
+}
+
+/* Scenario dark mode (system) */
+@media (prefers-color-scheme: dark) {
+    .scenario-column {
+        background-color: #1a1a2e;
+        border-color: #333;
+    }
+    .scenario-column h3 {
+        color: #40E0D0;
+    }
+    .scenario-table th {
+        background-color: #40E0D0;
+        color: #0A0A2A;
+    }
+    .scenario-table td {
+        border-bottom-color: #333;
+    }
+    .scenario-table tr:nth-child(even) {
+        background-color: #1a1a2e;
+    }
+    .scenario-recommendation {
+        background-color: #1a2e1a;
+        border-left-color: #28a745;
+    }
+    .scenario-recommendation h3 {
+        color: #28a745;
+    }
+}
+
+/* Scenario responsive */
+@media (max-width: 768px) {
+    .scenario-columns {
+        flex-direction: column;
+    }
+    .scenario-charts {
+        flex-direction: column;
     }
 }
 

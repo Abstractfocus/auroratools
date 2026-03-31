@@ -24,6 +24,13 @@
             <button class="tab-btn" data-target="scenarioPlanner">Scenario Planner</button>
             <button class="tab-btn" data-target="dashboard">Dashboard</button>
             <button class="tab-btn" data-target="reportCard">Report Card</button>
+            <button class="tab-btn" data-target="dataPipeline">Data Pipeline</button>
+            <button class="tab-btn" data-target="engagementScoping">Engagement Scoping</button>
+            <button class="tab-btn" data-target="meetingPrep">Meeting Prep</button>
+            <button class="tab-btn" data-target="weightedScoring">Scoring Model</button>
+            <button class="tab-btn" data-target="kpiDashboard">KPI Dashboard</button>
+            <button class="tab-btn" data-target="emailTemplateEngine">Email Templates</button>
+            <button class="tab-btn" data-target="assessmentReminders">Reminders</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -572,6 +579,391 @@
             <button onclick="resetScenarios()">Reset</button>
             <div id="scenarioResult"></div>
         </div>
+
+        <div id="dataPipeline" class="tool">
+            <h2>Data Pipeline / Export Hub</h2>
+
+            <!-- Data Source Selection -->
+            <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+                <h3 style="margin-top: 0; color: #0A0A2A;">Data Sources</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <button onclick="dpSelectAll(true)">Select All</button>
+                    <button onclick="dpSelectAll(false)" style="background-color: #6c757d;">Deselect All</button>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="dpSrc-crm" value="aurora-crm-clients" checked> CRM Clients
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="dpSrc-kpi" value="aurora-kpis" checked> KPI Data
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="dpSrc-dashboard" value="aurora-dashboard-clients" checked> Dashboard Snapshots
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="dpSrc-reminders" value="aurora-reminders" checked> Assessment Reminders
+                    </label>
+                </div>
+            </div>
+
+            <!-- Data Summary View -->
+            <div id="dpSummaryCards" style="margin-bottom: 20px;"></div>
+
+            <!-- Export Format Selection -->
+            <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+                <h3 style="margin-top: 0; color: #0A0A2A;">Export Format</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="dpFormat" value="csv" checked> CSV (one file per data source, or combined)
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="dpFormat" value="json"> JSON (structured export)
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="dpFormat" value="tsv"> Google Sheets (Tab-separated values)
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="dpFormat" value="markdown"> Markdown table (for documentation/reports)
+                    </label>
+                </div>
+            </div>
+
+            <!-- Export / Import Actions -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                <button onclick="exportData()">Export Data</button>
+                <label style="display: inline-block;">
+                    <button onclick="document.getElementById('dpImportFile').click()" style="background-color: #6f42c1;">Import JSON</button>
+                    <input type="file" id="dpImportFile" accept=".json" style="display: none;" onchange="importData(this)">
+                </label>
+                <button onclick="clearAllData()" style="background-color: #dc3545;">Clear All Data</button>
+            </div>
+
+            <!-- Result Area -->
+            <div id="dpResult"></div>
+        </div>
+
+        <div id="emailTemplateEngine" class="tool">
+            <h2>Email Template Engine</h2>
+
+            <div class="input-group">
+                <label for="emailTemplate">Template</label>
+                <select id="emailTemplate">
+                    <option value="initial_outreach">Initial Outreach</option>
+                    <option value="post_assessment">Post-Assessment Follow-up</option>
+                    <option value="proposal_followup">Proposal Follow-up</option>
+                    <option value="quarterly_checkin">Quarterly Check-in</option>
+                    <option value="upsell">Upsell Opportunity</option>
+                    <option value="thank_you">Thank You / Won Deal</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="emailCustomTemplate">Saved Custom Templates</label>
+                <select id="emailCustomTemplate">
+                    <option value="">-- None --</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="emailRecipientName">Recipient Name *</label>
+                <input type="text" id="emailRecipientName" placeholder="Enter recipient name">
+            </div>
+            <div class="input-group">
+                <label for="emailCompany">Company *</label>
+                <input type="text" id="emailCompany" placeholder="Enter company name">
+            </div>
+            <div class="input-group">
+                <label for="emailIndustry">Industry</label>
+                <select id="emailIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Education">Education</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="emailSenderName">Sender Name</label>
+                <input type="text" id="emailSenderName" placeholder="Aurora Technologies Team" value="Aurora Technologies Team">
+            </div>
+
+            <h3 style="margin-top:20px; margin-bottom:10px; color:#0A0A2A;">Assessment Scores (Optional)</h3>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <div class="input-group" style="flex:1; min-width:140px;">
+                    <label for="emailScoreBizOps">Business Ops (1-5)</label>
+                    <input type="number" id="emailScoreBizOps" placeholder="1-5" min="1" max="5">
+                </div>
+                <div class="input-group" style="flex:1; min-width:140px;">
+                    <label for="emailScoreTech">Technology (1-5)</label>
+                    <input type="number" id="emailScoreTech" placeholder="1-5" min="1" max="5">
+                </div>
+                <div class="input-group" style="flex:1; min-width:140px;">
+                    <label for="emailScoreReadiness">Readiness (1-5)</label>
+                    <input type="number" id="emailScoreReadiness" placeholder="1-5" min="1" max="5">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="emailProposalAmount">Proposal Amount (USD, Optional)</label>
+                <input type="number" id="emailProposalAmount" placeholder="Enter proposal amount">
+            </div>
+
+            <div class="input-group">
+                <label for="emailCustomNotes">Custom Notes (Optional)</label>
+                <textarea id="emailCustomNotes" rows="3" placeholder="Any additional notes to include..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button onclick="generateEmail()">Generate Email</button>
+                <button onclick="copyEmail()" style="background-color:#0A0A2A;">Copy Email</button>
+                <button onclick="copySubject()" style="background-color:#0A0A2A;">Copy Subject</button>
+                <button onclick="saveCustomTemplate()" style="background-color:#6c757d;">Save as Template</button>
+            </div>
+
+            <div id="emailResult"></div>
+        </div>
+
+        <div id="assessmentReminders" class="tool">
+            <h2>Recurring Assessment Reminders</h2>
+
+            <div id="remindersSummary" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;"></div>
+
+            <h3 style="margin-bottom:10px;color:#0A0A2A;">Add Reminder</h3>
+            <div class="input-group">
+                <label for="reminderClientName">Client Name *</label>
+                <input type="text" id="reminderClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label for="reminderCompany">Company *</label>
+                <input type="text" id="reminderCompany" placeholder="Enter company name">
+            </div>
+            <div class="input-group">
+                <label for="reminderEmail">Email</label>
+                <input type="text" id="reminderEmail" placeholder="Enter email address">
+            </div>
+            <div class="input-group">
+                <label for="reminderType">Assessment Type</label>
+                <select id="reminderType">
+                    <option value="SMB Assessment">SMB Assessment</option>
+                    <option value="Digital Readiness">Digital Readiness</option>
+                    <option value="Full Review">Full Review</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="reminderFrequency">Frequency</label>
+                <select id="reminderFrequency">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Semi-Annual">Semi-Annual</option>
+                    <option value="Annual">Annual</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="reminderStartDate">Start Date *</label>
+                <input type="date" id="reminderStartDate">
+            </div>
+            <div class="input-group">
+                <label for="reminderNotes">Notes</label>
+                <textarea id="reminderNotes" rows="2" placeholder="Any additional notes..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="addReminder()">Add Reminder</button>
+                <button onclick="exportReminders()" style="background-color:#0A0A2A;">Export CSV</button>
+            </div>
+
+            <div id="remindersResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="engagementScoping" class="tool">
+            <h2>Engagement Scoping Template</h2>
+            <div class="input-group">
+                <label for="scopeClientName">Client Name</label>
+                <input type="text" id="scopeClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label>Business Operations Score (1-5)</label>
+                <input type="range" min="1" max="5" value="3" step="0.5" id="scopeBizOps">
+                <div class="slider-labels">
+                    <span>Weak</span>
+                    <span class="slider-value" id="scopeBizOps-value">3</span>
+                    <span>Strong</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Business Development Score (1-5)</label>
+                <input type="range" min="1" max="5" value="3" step="0.5" id="scopeBizDev">
+                <div class="slider-labels">
+                    <span>Weak</span>
+                    <span class="slider-value" id="scopeBizDev-value">3</span>
+                    <span>Strong</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Technology Score (1-5)</label>
+                <input type="range" min="1" max="5" value="3" step="0.5" id="scopeTech">
+                <div class="slider-labels">
+                    <span>Weak</span>
+                    <span class="slider-value" id="scopeTech-value">3</span>
+                    <span>Strong</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Digital Readiness Score (1-5)</label>
+                <input type="range" min="1" max="5" value="3" step="0.5" id="scopeReadiness">
+                <div class="slider-labels">
+                    <span>Low</span>
+                    <span class="slider-value" id="scopeReadiness-value">3</span>
+                    <span>High</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="scopeRevenue">Annual Revenue (USD)</label>
+                <input type="number" id="scopeRevenue" placeholder="Enter annual revenue">
+            </div>
+            <div class="input-group">
+                <label for="scopeEmployees">Employee Count</label>
+                <input type="number" id="scopeEmployees" placeholder="Enter employee count">
+            </div>
+            <div class="input-group">
+                <label for="scopeGoal">Primary Goal</label>
+                <select id="scopeGoal">
+                    <option value="">-- Select Goal --</option>
+                    <option value="Increase Revenue">Increase Revenue</option>
+                    <option value="Reduce Costs">Reduce Costs</option>
+                    <option value="Improve Efficiency">Improve Efficiency</option>
+                    <option value="Digital Transformation">Digital Transformation</option>
+                    <option value="All of the Above">All of the Above</option>
+                </select>
+            </div>
+            <button onclick="generateScope()">Generate Scope</button>
+            <div id="scopingResult"></div>
+        </div>
+
+        <div id="meetingPrep" class="tool">
+            <h2>Meeting Prep Generator</h2>
+            <div class="input-group">
+                <label for="meetClientName">Client Name</label>
+                <input type="text" id="meetClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label for="meetType">Meeting Type</label>
+                <select id="meetType">
+                    <option value="">-- Select Meeting Type --</option>
+                    <option value="Discovery Call">Discovery Call</option>
+                    <option value="Proposal Review">Proposal Review</option>
+                    <option value="Progress Update">Progress Update</option>
+                    <option value="Quarterly Review">Quarterly Review</option>
+                    <option value="Upsell Conversation">Upsell Conversation</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="meetIndustry">Client Industry</label>
+                <select id="meetIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Education">Education</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="meetPainPoints">Known Pain Points</label>
+                <textarea id="meetPainPoints" rows="3" placeholder="Describe known client pain points..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="meetPrevNotes">Previous Engagement Notes (optional)</label>
+                <textarea id="meetPrevNotes" rows="3" placeholder="Any notes from prior engagements..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="meetBizOps">Business Operations Score (1-5)</label>
+                <input type="number" id="meetBizOps" placeholder="1-5" min="1" max="5" step="0.5">
+            </div>
+            <div class="input-group">
+                <label for="meetTech">Technology Score (1-5)</label>
+                <input type="number" id="meetTech" placeholder="1-5" min="1" max="5" step="0.5">
+            </div>
+            <div class="input-group">
+                <label for="meetReadiness">Readiness Score (1-5)</label>
+                <input type="number" id="meetReadiness" placeholder="1-5" min="1" max="5" step="0.5">
+            </div>
+            <button onclick="generateMeetingPrep()">Generate Prep</button>
+            <div id="meetingPrepResult"></div>
+        </div>
+
+        <div id="weightedScoring" class="tool">
+            <h2>Weighted Scoring Model</h2>
+            <div style="margin-bottom:20px;padding:15px;background-color:#f8f9fa;border-radius:4px;">
+                <h3 style="margin-top:0;color:#0A0A2A;">Criteria</h3>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                    <div class="input-group" style="margin-bottom:0;flex:2;min-width:160px;">
+                        <label for="scoringCriterionName">Criterion Name</label>
+                        <input type="text" id="scoringCriterionName" placeholder="e.g. Cost, Quality, Support">
+                    </div>
+                    <div class="input-group" style="margin-bottom:0;flex:1;min-width:100px;">
+                        <label for="scoringCriterionWeight">Weight (1-10)</label>
+                        <input type="number" id="scoringCriterionWeight" min="1" max="10" value="5">
+                    </div>
+                    <button onclick="addCriterion()" style="height:38px;">Add Criterion</button>
+                </div>
+                <div id="scoringCriteriaList" style="margin-top:10px;"></div>
+            </div>
+            <div style="margin-bottom:20px;padding:15px;background-color:#f8f9fa;border-radius:4px;">
+                <h3 style="margin-top:0;color:#0A0A2A;">Options</h3>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                    <div class="input-group" style="margin-bottom:0;flex:2;min-width:160px;">
+                        <label for="scoringOptionName">Option Name</label>
+                        <input type="text" id="scoringOptionName" placeholder="e.g. Vendor A, Strategy 1">
+                    </div>
+                    <button onclick="addOption()" style="height:38px;">Add Option</button>
+                </div>
+                <div id="scoringOptionsList" style="margin-top:10px;"></div>
+            </div>
+            <div id="scoringFormArea" style="margin-bottom:20px;"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="calculateWeightedScores()">Calculate Scores</button>
+                <button onclick="clearScoring()" style="background-color:#dc3545;">Clear All</button>
+                <button onclick="exportScoringCSV()" style="background-color:#6f42c1;">Export CSV</button>
+            </div>
+            <div id="scoringResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="kpiDashboard" class="tool">
+            <h2>KPI Dashboard Builder</h2>
+            <div style="margin-bottom:20px;padding:15px;background-color:#f8f9fa;border-radius:4px;">
+                <h3 style="margin-top:0;color:#0A0A2A;">Add New KPI</h3>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">
+                    <div class="input-group" style="margin-bottom:0;flex:2;min-width:160px;">
+                        <label for="kpiName">KPI Name</label>
+                        <input type="text" id="kpiName" placeholder="e.g. Monthly Revenue">
+                    </div>
+                    <div class="input-group" style="margin-bottom:0;flex:1;min-width:100px;">
+                        <label for="kpiTarget">Target Value</label>
+                        <input type="number" id="kpiTarget" placeholder="e.g. 100000">
+                    </div>
+                    <div class="input-group" style="margin-bottom:0;flex:1;min-width:80px;">
+                        <label for="kpiUnit">Unit</label>
+                        <input type="text" id="kpiUnit" placeholder="e.g. $, %, count">
+                    </div>
+                    <button onclick="addKPI()" style="height:38px;">Add KPI</button>
+                </div>
+            </div>
+            <div id="kpiSummary" style="margin-bottom:20px;"></div>
+            <div id="kpiCards" style="display:grid;gap:16px;"></div>
+            <div style="margin-top:20px;">
+                <button onclick="exportKPIs()" style="background-color:#6f42c1;">Export All CSV</button>
+            </div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -588,6 +980,13 @@
     <script src="dashboard.js"></script>
     <script src="reportcard.js"></script>
     <script src="scenario.js"></script>
+    <script src="datapipeline.js"></script>
+    <script src="email.js"></script>
+    <script src="reminders.js"></script>
+    <script src="scoping.js"></script>
+    <script src="meetingprep.js"></script>
+    <script src="scoring.js"></script>
+    <script src="kpi.js"></script>
     <script src="sharing.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
