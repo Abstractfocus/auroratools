@@ -48,6 +48,10 @@ function addClient() {
     clients.push(client);
     saveCRMClients(clients);
 
+    if (typeof triggerNotification === 'function') {
+        triggerNotification('client_added', {name: name, company: company, stage: stage, clientId: client.id});
+    }
+
     // Clear form
     document.getElementById('crmClientName').value = '';
     document.getElementById('crmClientCompany').value = '';
@@ -217,7 +221,8 @@ function renderClients() {
         });
         html += '<td>';
         html += '<button class="crm-action-btn crm-edit-btn" onclick="editClient(' + c.id + ')">Edit</button> ';
-        html += '<button class="crm-action-btn crm-delete-btn" onclick="deleteClient(' + c.id + ')">Delete</button>';
+        html += '<button class="crm-action-btn crm-delete-btn" onclick="deleteClient(' + c.id + ')">Delete</button> ';
+        html += '<button class="crm-action-btn crm-propose-btn" onclick="autoFillProposal(' + c.id + ')">Propose</button>';
         html += '</td>';
         html += '</tr>';
     });

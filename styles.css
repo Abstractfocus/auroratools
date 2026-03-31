@@ -1178,6 +1178,72 @@ body.dark-mode .scenario-recommendation h3 {
     }
 }
 
+/* ===== Toast Notification ===== */
+.toast {
+    position: fixed;
+    bottom: -60px;
+    right: 20px;
+    background-color: #0A0A2A;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 10000;
+    transition: bottom 0.3s ease;
+    max-width: 400px;
+}
+
+.toast-show {
+    bottom: 24px;
+}
+
+body.dark-mode .toast {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+}
+
+@media (prefers-color-scheme: dark) {
+    .toast {
+        background-color: #40E0D0;
+        color: #0A0A2A;
+    }
+}
+
+/* ===== Pulse Highlight Animation ===== */
+@keyframes pulseHighlight {
+    0% { box-shadow: 0 0 0 0 rgba(64, 224, 208, 0.6); }
+    50% { box-shadow: 0 0 0 8px rgba(64, 224, 208, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(64, 224, 208, 0); }
+}
+
+.pulse-highlight {
+    animation: pulseHighlight 0.6s ease-out 3;
+    border-color: #40E0D0 !important;
+}
+
+/* ===== Propose Button ===== */
+.crm-propose-btn {
+    background-color: #0A0A2A;
+    color: white;
+}
+
+.crm-propose-btn:hover {
+    background-color: #1a1a3e;
+}
+
+body.dark-mode .crm-propose-btn {
+    background-color: #40E0D0;
+    color: #0A0A2A;
+}
+
+@media (prefers-color-scheme: dark) {
+    .crm-propose-btn {
+        background-color: #40E0D0;
+        color: #0A0A2A;
+    }
+}
+
 /* Print-friendly styles */
 @media print {
     .tool-nav, .dark-mode-toggle, button:not(.tab-btn) { display: none; }
