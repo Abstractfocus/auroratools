@@ -3342,4 +3342,146 @@ body.dark-mode #campaignDashResult table th {
     .channel-performance { background: #16213e; }
     .channel-performance th { color: #aaa; }
     .channel-performance td { border-bottom-color: #333; color: #e0e0e0; }
+    .automation-metric { background: #16213e; }
+    .content-pipeline { gap: 8px; }
+    .content-column { background: #16213e; border-color: #333; }
+    .content-card { background: #1a1a3e; border-color: #444; }
+    .content-card.overdue { border-color: #dc3545; }
+    .content-badge { color: #fff; }
+    .calendar-week { background: #16213e; border-color: #333; }
+    .calendar-item { border-bottom-color: #333; }
+    .cc-view-btn { background: #1a1a2e; border-color: #444; color: #aaa; }
+    .cc-view-btn.active { background: #16213e; color: #40E0D0; border-color: #40E0D0; }
+}
+
+/* Automation ROI */
+.automation-metric {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Content Calendar Pipeline */
+.content-pipeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.content-column {
+    background: #f0f2f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 10px;
+    min-width: 160px;
+    min-height: 120px;
+}
+
+.content-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.content-card.overdue {
+    border-color: #dc3545;
+    border-left: 3px solid #dc3545;
+}
+
+.content-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.calendar-week {
+    background: #f0f2f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.calendar-item {
+    padding: 6px 0;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.calendar-item:last-child {
+    border-bottom: none;
+}
+
+.cc-view-btn {
+    padding: 6px 14px;
+    font-size: 0.85em;
+    background: #e9ecef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.cc-view-btn.active {
+    background: #40E0D0;
+    color: #fff;
+    border-color: #40E0D0;
+}
+
+/* Dark mode for Automation ROI */
+body.dark-mode .automation-metric {
+    background: #16213e;
+}
+
+/* Dark mode for Content Calendar */
+body.dark-mode .content-pipeline {
+    gap: 8px;
+}
+
+body.dark-mode .content-column {
+    background: #16213e;
+    border-color: #333;
+}
+
+body.dark-mode .content-card {
+    background: #1a1a3e;
+    border-color: #444;
+}
+
+body.dark-mode .content-card.overdue {
+    border-color: #dc3545;
+}
+
+body.dark-mode .calendar-week {
+    background: #16213e;
+    border-color: #333;
+}
+
+body.dark-mode .calendar-item {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .cc-view-btn {
+    background: #1a1a2e;
+    border-color: #444;
+    color: #aaa;
+}
+
+body.dark-mode .cc-view-btn.active {
+    background: #16213e;
+    color: #40E0D0;
+    border-color: #40E0D0;
 }
