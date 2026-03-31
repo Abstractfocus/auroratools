@@ -74,7 +74,7 @@ button:hover {
     background-color: #3CC6B7;
 }
 
-#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult, #benchmarkResult, #budgetResult, #riskResult, #proposalResult, #dashboardResult, #reportCardResult, #scenarioResult, #scopingResult, #meetingPrepResult, #revenueModelResult, #complianceResult, #pricingResult, #utilizationResult {
+#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult, #benchmarkResult, #budgetResult, #riskResult, #proposalResult, #dashboardResult, #reportCardResult, #scenarioResult, #scopingResult, #meetingPrepResult, #revenueModelResult, #complianceResult, #pricingResult, #utilizationResult, #aiEvalResult, #dataReadinessResult {
     margin-top: 20px;
     padding: 15px;
     border-radius: 4px;
@@ -2163,6 +2163,132 @@ body.dark-mode .idea-details {
     .idea-tag { background: #1a1a2e; border-color: #444; color: #aaa; }
     .idea-meter { background: #333; }
     .idea-details { border-top-color: #333; }
+}
+
+/* AI Use Case Evaluator */
+.ai-use-case-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s ease;
+}
+.ai-use-case-card:hover {
+    box-shadow: 0 2px 8px rgba(10, 10, 42, 0.1);
+}
+.ai-category-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Priority Matrix */
+.priority-matrix {
+    margin: 16px 0;
+    position: relative;
+}
+.priority-matrix-ylabel {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 6px;
+}
+.priority-matrix-grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 2px;
+}
+.priority-matrix-header {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #666;
+    text-align: center;
+    padding: 6px 8px;
+}
+.priority-matrix-rowlabel {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #666;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+.priority-matrix-cell {
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    min-height: 60px;
+}
+.priority-matrix-cell.q-quickwin { background: #e8f5e9; border: 1px solid #c8e6c9; }
+.priority-matrix-cell.q-strategic { background: #ede7f6; border: 1px solid #d1c4e9; }
+.priority-matrix-cell.q-future { background: #fff8e1; border: 1px solid #ffecb3; }
+.priority-matrix-cell.q-notrec { background: #fce4ec; border: 1px solid #f8bbd0; }
+
+/* Data Readiness Roadmap */
+.readiness-roadmap {
+    margin: 16px 0;
+}
+.roadmap-phase {
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    border-left: 4px solid #ccc;
+    border-radius: 4px;
+    background: #f8f9fa;
+    transition: background 0.2s ease;
+}
+.roadmap-phase.current {
+    background: #e8f5e9;
+    border-left-width: 4px;
+}
+.roadmap-phase.complete {
+    background: #f0f0f0;
+    opacity: 0.8;
+}
+.roadmap-phase.upcoming {
+    background: #fafafa;
+    opacity: 0.6;
+}
+
+/* Dark mode - AI Evaluator & Data Readiness */
+body.dark-mode .ai-use-case-card {
+    background: #16213e;
+    border-color: #333;
+    color: #ccc;
+}
+body.dark-mode .ai-use-case-card strong {
+    color: #40E0D0;
+}
+body.dark-mode .priority-matrix-cell.q-quickwin { background: #1a2e1a; border-color: #2e4a2e; }
+body.dark-mode .priority-matrix-cell.q-strategic { background: #1e1a2e; border-color: #3a2e5a; }
+body.dark-mode .priority-matrix-cell.q-future { background: #2e2a1a; border-color: #4a3e1a; }
+body.dark-mode .priority-matrix-cell.q-notrec { background: #2e1a1a; border-color: #4a2020; }
+body.dark-mode .priority-matrix-cell { color: #ccc; }
+body.dark-mode .priority-matrix-cell strong { color: #e0e0e0; }
+body.dark-mode .priority-matrix-header,
+body.dark-mode .priority-matrix-rowlabel,
+body.dark-mode .priority-matrix-ylabel { color: #999; }
+body.dark-mode .roadmap-phase { background: #16213e; border-color: #444; color: #ccc; }
+body.dark-mode .roadmap-phase.current { background: #1a2e1a; }
+body.dark-mode .roadmap-phase.complete { background: #1a1a2e; }
+body.dark-mode .roadmap-phase.upcoming { background: #111; }
+
+@media (prefers-color-scheme: dark) {
+    .ai-use-case-card { background: #16213e; border-color: #333; color: #ccc; }
+    .ai-use-case-card strong { color: #40E0D0; }
+    .priority-matrix-cell.q-quickwin { background: #1a2e1a; border-color: #2e4a2e; }
+    .priority-matrix-cell.q-strategic { background: #1e1a2e; border-color: #3a2e5a; }
+    .priority-matrix-cell.q-future { background: #2e2a1a; border-color: #4a3e1a; }
+    .priority-matrix-cell.q-notrec { background: #2e1a1a; border-color: #4a2020; }
+    .priority-matrix-cell { color: #ccc; }
+    .priority-matrix-cell strong { color: #e0e0e0; }
+    .priority-matrix-header, .priority-matrix-rowlabel, .priority-matrix-ylabel { color: #999; }
+    .roadmap-phase { background: #16213e; border-color: #444; color: #ccc; }
+    .roadmap-phase.current { background: #1a2e1a; }
+    .roadmap-phase.complete { background: #1a1a2e; }
+    .roadmap-phase.upcoming { background: #111; }
 }
 
 /* ===== Metric Cards (Revenue Model / Compliance) ===== */
