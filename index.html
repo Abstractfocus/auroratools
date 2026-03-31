@@ -33,6 +33,12 @@
             <button class="tab-btn" data-target="assessmentReminders">Reminders</button>
             <button class="tab-btn" data-target="pipelineAnalytics">Pipeline Analytics</button>
             <button class="tab-btn" data-target="ideaGenerator">Idea Generator</button>
+            <button class="tab-btn" data-target="revenueModel">Revenue Model</button>
+            <button class="tab-btn" data-target="complianceChecker">Compliance</button>
+            <button class="tab-btn" data-target="pricingModeler">Pricing</button>
+            <button class="tab-btn" data-target="utilizationTracker">Utilization</button>
+            <button class="tab-btn" data-target="invoiceGenerator">Invoices</button>
+            <button class="tab-btn" data-target="engagementHealth">Eng. Health</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -1051,6 +1057,227 @@
             </div>
             <div id="ideaGenResult" style="margin-top:20px;"></div>
         </div>
+        <div id="revenueModel" class="tool">
+            <h2>Revenue Model Calculator</h2>
+            <div class="input-group">
+                <label for="rmNewCustomers">Monthly New Customers</label>
+                <input type="number" id="rmNewCustomers" placeholder="Enter monthly new customers">
+            </div>
+            <div class="input-group">
+                <label for="rmARPU">Average Revenue Per User / Month (USD)</label>
+                <input type="number" id="rmARPU" placeholder="Enter ARPU">
+            </div>
+            <div class="input-group">
+                <label for="rmChurnRate">Monthly Churn Rate (%)</label>
+                <input type="number" id="rmChurnRate" placeholder="e.g. 5" step="0.1">
+            </div>
+            <div class="input-group">
+                <label for="rmCAC">Customer Acquisition Cost (USD)</label>
+                <input type="number" id="rmCAC" placeholder="Enter CAC">
+            </div>
+            <div class="input-group">
+                <label for="rmGrossMargin">Gross Margin (%)</label>
+                <input type="number" id="rmGrossMargin" placeholder="Default: 70" value="70" step="1">
+            </div>
+            <div class="input-group">
+                <label for="rmOpCosts">Monthly Operating Costs (USD)</label>
+                <input type="number" id="rmOpCosts" placeholder="Enter monthly operating costs">
+            </div>
+            <div class="input-group">
+                <label for="rmPeriod">Projection Period (months)</label>
+                <input type="number" id="rmPeriod" placeholder="Default: 24" value="24" min="1">
+            </div>
+            <button onclick="calculateRevenueModel()">Calculate Model</button>
+            <div id="revenueModelResult"></div>
+        </div>
+
+        <div id="complianceChecker" class="tool">
+            <h2>Compliance Checker</h2>
+            <p>Assess your regulatory readiness across key compliance frameworks. Select Yes, Partial, or No for each item.</p>
+            <div id="complianceChecklist"></div>
+            <button onclick="assessCompliance()">Assess Compliance</button>
+            <div id="complianceResult"></div>
+        </div>
+
+        <div id="pricingModeler" class="tool">
+            <h2>Pricing Strategy Modeler</h2>
+            <p style="color:#888;margin-bottom:15px;">Test pricing tiers and model revenue impact across your visitor base.</p>
+
+            <div class="input-group">
+                <label for="tierCount">Number of Tiers (1-4)</label>
+                <select id="tierCount" onchange="updateTierInputs()">
+                    <option value="1">1 Tier</option>
+                    <option value="2">2 Tiers</option>
+                    <option value="3" selected>3 Tiers</option>
+                    <option value="4">4 Tiers</option>
+                </select>
+            </div>
+
+            <div id="tierInputsContainer"></div>
+
+            <div class="input-group">
+                <label for="pricingVisitors">Total Monthly Visitors / Leads</label>
+                <input type="number" id="pricingVisitors" placeholder="e.g. 10000" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="pricingCurrentAvg">Current Average Price (optional, for comparison)</label>
+                <input type="number" id="pricingCurrentAvg" placeholder="e.g. 49" min="0" step="0.01">
+            </div>
+
+            <button onclick="modelPricing()">Model Pricing</button>
+            <div id="pricingResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="utilizationTracker" class="tool">
+            <h2>Utilization Tracker</h2>
+            <p style="color:#888;margin-bottom:15px;">Track billable vs non-billable hours and team capacity.</p>
+
+            <div style="border:1px solid #ddd;border-radius:8px;padding:15px;margin-bottom:20px;">
+                <h4 style="margin-top:0;">Add Team Member</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div class="input-group">
+                        <label for="utilMemberName">Name</label>
+                        <input type="text" id="utilMemberName" placeholder="e.g. Jane Smith">
+                    </div>
+                    <div class="input-group">
+                        <label for="utilMemberRole">Role</label>
+                        <input type="text" id="utilMemberRole" placeholder="e.g. Developer">
+                    </div>
+                    <div class="input-group">
+                        <label for="utilMemberRate">Hourly Rate ($)</label>
+                        <input type="number" id="utilMemberRate" placeholder="e.g. 150" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="utilMemberCapacity">Monthly Capacity (hours)</label>
+                        <input type="number" id="utilMemberCapacity" value="160" min="0">
+                    </div>
+                </div>
+                <button onclick="addTeamMember()">Add Member</button>
+            </div>
+
+            <div class="input-group">
+                <label for="utilTargetRate">Target Utilization % (default 75%)</label>
+                <input type="number" id="utilTargetRate" value="75" min="0" max="100" onchange="updateTargetUtilization()">
+            </div>
+
+            <button onclick="calculateUtilization()">Calculate Utilization</button>
+            <div id="utilizationResult" style="margin-top:20px;"></div>
+        </div>
+        <div id="invoiceGenerator" class="tool">
+            <h2>Invoice Generator</h2>
+
+            <div class="input-group">
+                <label for="invClientSelect">Select Client (from CRM)</label>
+                <select id="invClientSelect">
+                    <option value="">-- Select Client or Enter Manually --</option>
+                </select>
+            </div>
+
+            <div id="invManualFields">
+                <div class="input-group">
+                    <label for="invClientName">Client Name</label>
+                    <input type="text" id="invClientName" placeholder="Enter client name">
+                </div>
+                <div class="input-group">
+                    <label for="invClientCompany">Company</label>
+                    <input type="text" id="invClientCompany" placeholder="Enter company name">
+                </div>
+                <div class="input-group">
+                    <label for="invClientEmail">Email</label>
+                    <input type="text" id="invClientEmail" placeholder="Enter email">
+                </div>
+                <div class="input-group">
+                    <label for="invClientAddress">Address</label>
+                    <textarea id="invClientAddress" rows="3" placeholder="Enter client address"></textarea>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="invNumber">Invoice Number</label>
+                <input type="text" id="invNumber" placeholder="INV-YYYY-XXX">
+            </div>
+            <div class="input-group">
+                <label for="invDate">Invoice Date</label>
+                <input type="date" id="invDate">
+            </div>
+            <div class="input-group">
+                <label for="invDueDate">Due Date</label>
+                <input type="date" id="invDueDate">
+            </div>
+            <div class="input-group">
+                <label for="invBillingType">Billing Type</label>
+                <select id="invBillingType">
+                    <option value="Hourly">Hourly</option>
+                    <option value="Fixed Fee">Fixed Fee</option>
+                    <option value="Milestone">Milestone</option>
+                </select>
+            </div>
+
+            <h3>Line Items</h3>
+            <div id="invLineItems"></div>
+            <button type="button" onclick="addLineItem()" style="margin-bottom:15px;">+ Add Line Item</button>
+
+            <div class="input-group">
+                <label for="invTaxRate">Tax Rate (%)</label>
+                <input type="number" id="invTaxRate" value="0" min="0" max="100" step="any">
+            </div>
+            <div class="input-group">
+                <label for="invNotes">Notes (optional)</label>
+                <textarea id="invNotes" rows="3" placeholder="Additional notes"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="invPaymentTerms">Payment Terms</label>
+                <textarea id="invPaymentTerms" rows="2">Net 30</textarea>
+            </div>
+
+            <button onclick="generateInvoice()">Generate Invoice</button>
+
+            <div id="invPreview" style="margin-top:20px;"></div>
+            <div id="invSavedList" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="engagementHealth" class="tool">
+            <h2>Engagement Health Monitor</h2>
+
+            <h3>Add New Engagement</h3>
+            <div class="input-group">
+                <label for="ehClientName">Client Name</label>
+                <input type="text" id="ehClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label for="ehProjectName">Project Name</label>
+                <input type="text" id="ehProjectName" placeholder="Enter project name">
+            </div>
+            <div class="input-group">
+                <label for="ehStartDate">Start Date</label>
+                <input type="date" id="ehStartDate">
+            </div>
+            <div class="input-group">
+                <label for="ehEndDate">End Date</label>
+                <input type="date" id="ehEndDate">
+            </div>
+            <div class="input-group">
+                <label for="ehBudget">Total Budget (USD)</label>
+                <input type="number" id="ehBudget" placeholder="Enter total budget" min="0">
+            </div>
+            <div class="input-group">
+                <label for="ehType">Engagement Type</label>
+                <select id="ehType">
+                    <option value="Fixed">Fixed</option>
+                    <option value="T&M">T&amp;M</option>
+                    <option value="Retainer">Retainer</option>
+                </select>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                <button onclick="addEngagement()">Add Engagement</button>
+                <button onclick="renderEngagementHealth()">Refresh Dashboard</button>
+                <button onclick="exportEngagementsCSV()" style="background-color:#0A0A2A;">Export CSV</button>
+            </div>
+
+            <div id="ehDashboard"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -1078,6 +1305,12 @@
     <script src="kpi.js"></script>
     <script src="pipeline.js"></script>
     <script src="ideagen.js"></script>
+    <script src="pricing.js"></script>
+    <script src="utilization.js"></script>
+    <script src="revenuemodel.js"></script>
+    <script src="compliance.js"></script>
+    <script src="invoice.js"></script>
+    <script src="enghealth.js"></script>
     <script src="sharing.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
