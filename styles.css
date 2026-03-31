@@ -2028,3 +2028,133 @@ body.dark-mode .action-item-none {
 body.dark-mode #pipelineAnalyticsResult {
     color: #ccc;
 }
+
+/* Business Idea Generator */
+.idea-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s ease;
+}
+.idea-card:hover {
+    box-shadow: 0 4px 12px rgba(10,10,42,0.12);
+}
+.idea-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.idea-rank {
+    background: #0A0A2A;
+    color: #40E0D0;
+    font-weight: 700;
+    font-size: 0.85em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+.idea-name {
+    margin: 0;
+    font-size: 1.05em;
+    color: #0A0A2A;
+}
+.idea-elevator {
+    color: #555;
+    font-size: 0.95em;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+.idea-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.idea-tag {
+    background: #f0f0f0;
+    color: #555;
+    font-size: 0.8em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+.idea-metrics {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.idea-metric {
+    flex: 1;
+    min-width: 140px;
+}
+.idea-metric-label {
+    display: block;
+    font-size: 0.75em;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+.idea-meter {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+.idea-meter-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+.idea-metric-value {
+    font-size: 0.85em;
+    color: #333;
+}
+.idea-details {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    font-size: 0.9em;
+}
+.idea-details p {
+    margin: 6px 0;
+    color: #555;
+}
+
+/* Dark mode for idea generator */
+body.dark-mode .idea-card {
+    background: #16213e;
+    border-color: #333;
+}
+body.dark-mode .idea-name {
+    color: #40E0D0;
+}
+body.dark-mode .idea-elevator,
+body.dark-mode .idea-details p,
+body.dark-mode .idea-metric-value {
+    color: #b0b0b0;
+}
+body.dark-mode .idea-tag {
+    background: #1a1a2e;
+    border-color: #444;
+    color: #aaa;
+}
+body.dark-mode .idea-meter {
+    background: #333;
+}
+body.dark-mode .idea-details {
+    border-top-color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+    .idea-card { background: #16213e; border-color: #333; }
+    .idea-name { color: #40E0D0; }
+    .idea-elevator, .idea-details p, .idea-metric-value { color: #b0b0b0; }
+    .idea-tag { background: #1a1a2e; border-color: #444; color: #aaa; }
+    .idea-meter { background: #333; }
+    .idea-details { border-top-color: #333; }
+}

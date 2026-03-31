@@ -32,6 +32,7 @@
             <button class="tab-btn" data-target="emailTemplateEngine">Email Templates</button>
             <button class="tab-btn" data-target="assessmentReminders">Reminders</button>
             <button class="tab-btn" data-target="pipelineAnalytics">Pipeline Analytics</button>
+            <button class="tab-btn" data-target="ideaGenerator">Idea Generator</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -977,6 +978,76 @@
             <button onclick="renderPipelineAnalytics()" style="margin-bottom:20px;">Refresh Analytics</button>
             <div id="pipelineAnalyticsResult"></div>
         </div>
+        <div id="ideaGenerator" class="tool">
+            <h2>Business Idea Generator</h2>
+            <p style="color:#666;margin-bottom:20px;">Combine industry trends, business models, and problem frameworks to generate validated business ideas.</p>
+
+            <div class="input-group">
+                <label for="ideaIndustry">Target Industry *</label>
+                <select id="ideaIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Education">Education</option>
+                    <option value="Real Estate">Real Estate</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ideaTargetType">Target Market Type *</label>
+                <select id="ideaTargetType">
+                    <option value="">-- Select Type --</option>
+                    <option value="B2B">B2B (Business to Business)</option>
+                    <option value="B2C">B2C (Business to Consumer)</option>
+                    <option value="B2B2C">B2B2C (Hybrid)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ideaTargetSegment">Target Segment (optional)</label>
+                <select id="ideaTargetSegment">
+                    <option value="">-- Any Segment --</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ideaPainPoint">Primary Problem Area *</label>
+                <select id="ideaPainPoint">
+                    <option value="">-- Select Problem Area --</option>
+                    <option value="Efficiency">Efficiency (slow processes, manual work)</option>
+                    <option value="Growth">Growth (acquisition, retention, reach)</option>
+                    <option value="Compliance">Compliance (regulatory, privacy, audits)</option>
+                    <option value="Cost">Cost (high expenses, waste, vendor lock-in)</option>
+                    <option value="Experience">Experience (poor UX, fragmented tools)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ideaSkills">Your Skills / Expertise (optional)</label>
+                <input type="text" id="ideaSkills" placeholder="e.g. software development, marketing, finance">
+            </div>
+
+            <div class="input-group">
+                <label for="ideaBudget">Starting Budget</label>
+                <select id="ideaBudget">
+                    <option value="bootstrap">Bootstrap ($0-$10K)</option>
+                    <option value="moderate" selected>Moderate ($10K-$100K)</option>
+                    <option value="funded">Funded ($100K+)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ideaPassion">Passion / Interest Area (optional)</label>
+                <input type="text" id="ideaPassion" placeholder="e.g. sustainability, education, helping small businesses">
+            </div>
+
+            <button onclick="generateBusinessIdeas()">Generate Ideas</button>
+            <div id="ideaGenResult" style="margin-top:20px;"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -1003,6 +1074,7 @@
     <script src="scoring.js"></script>
     <script src="kpi.js"></script>
     <script src="pipeline.js"></script>
+    <script src="ideagen.js"></script>
     <script src="sharing.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
