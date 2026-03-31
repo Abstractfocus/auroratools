@@ -1,0 +1,61 @@
+<div id="dataPipeline" class="tool">
+    <h2>Data Pipeline / Export Hub</h2>
+
+    <!-- Data Source Selection -->
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3 style="margin-top: 0; color: #0A0A2A;">Data Sources</h3>
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <button onclick="dpSelectAll(true)">Select All</button>
+            <button onclick="dpSelectAll(false)" style="background-color: #6c757d;">Deselect All</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="dpSrc-crm" value="aurora-crm-clients" checked> CRM Clients
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="dpSrc-kpi" value="aurora-kpis" checked> KPI Data
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="dpSrc-dashboard" value="aurora-dashboard-clients" checked> Dashboard Snapshots
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="dpSrc-reminders" value="aurora-reminders" checked> Assessment Reminders
+            </label>
+        </div>
+    </div>
+
+    <!-- Data Summary View -->
+    <div id="dpSummaryCards" style="margin-bottom: 20px;"></div>
+
+    <!-- Export Format Selection -->
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3 style="margin-top: 0; color: #0A0A2A;">Export Format</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="radio" name="dpFormat" value="csv" checked> CSV (one file per data source, or combined)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="radio" name="dpFormat" value="json"> JSON (structured export)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="radio" name="dpFormat" value="tsv"> Google Sheets (Tab-separated values)
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="radio" name="dpFormat" value="markdown"> Markdown table (for documentation/reports)
+            </label>
+        </div>
+    </div>
+
+    <!-- Export / Import Actions -->
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+        <button onclick="exportData()">Export Data</button>
+        <label style="display: inline-block;">
+            <button onclick="document.getElementById('dpImportFile').click()" style="background-color: #6f42c1;">Import JSON</button>
+            <input type="file" id="dpImportFile" accept=".json" style="display: none;" onchange="importData(this)">
+        </label>
+        <button onclick="clearAllData()" style="background-color: #dc3545;">Clear All Data</button>
+    </div>
+
+    <!-- Result Area -->
+    <div id="dpResult"></div>
+</div>

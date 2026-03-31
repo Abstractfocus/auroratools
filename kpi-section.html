@@ -1,0 +1,34 @@
+<div id="kpiDashboard" class="tool">
+    <h2>KPI Dashboard Builder</h2>
+
+    <!-- Add KPI Form -->
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3 style="margin-top: 0; color: #0A0A2A;">Add New KPI</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+            <div class="input-group" style="margin-bottom: 0; flex: 2; min-width: 160px;">
+                <label for="kpiName">KPI Name</label>
+                <input type="text" id="kpiName" placeholder="e.g. Monthly Revenue">
+            </div>
+            <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 100px;">
+                <label for="kpiTarget">Target Value</label>
+                <input type="number" id="kpiTarget" placeholder="e.g. 100000">
+            </div>
+            <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 80px;">
+                <label for="kpiUnit">Unit</label>
+                <input type="text" id="kpiUnit" placeholder='e.g. $, %, count'>
+            </div>
+            <button onclick="addKPI()" style="height: 38px;">Add KPI</button>
+        </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div id="kpiSummary" style="margin-bottom: 20px;"></div>
+
+    <!-- KPI Cards -->
+    <div id="kpiCards" style="display: grid; gap: 16px;"></div>
+
+    <!-- Export Button -->
+    <div style="margin-top: 20px;">
+        <button onclick="exportKPIs()" style="background-color: #6f42c1;">Export All CSV</button>
+    </div>
+</div>

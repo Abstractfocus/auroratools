@@ -1,0 +1,115 @@
+<div id="scenarioPlanner" class="tool">
+    <h2>Scenario Planner</h2>
+
+    <h3>Baseline Metrics</h3>
+    <div class="input-group">
+        <label for="scenarioRevenue">Current Annual Revenue (USD)</label>
+        <input type="number" id="scenarioRevenue" placeholder="Enter annual revenue">
+    </div>
+    <div class="input-group">
+        <label for="scenarioEmployees">Current Employee Count</label>
+        <input type="number" id="scenarioEmployees" placeholder="Enter employee count">
+    </div>
+    <div class="input-group">
+        <label for="scenarioCosts">Current Operating Costs (USD)</label>
+        <input type="number" id="scenarioCosts" placeholder="Enter operating costs">
+    </div>
+    <div class="input-group">
+        <label for="scenarioCustomers">Current Customer Count</label>
+        <input type="number" id="scenarioCustomers" placeholder="Enter customer count">
+    </div>
+    <div class="input-group">
+        <label for="scenarioSatisfaction">Current Customer Satisfaction (1-10)</label>
+        <input type="number" id="scenarioSatisfaction" placeholder="Enter score (1-10)" min="1" max="10">
+    </div>
+
+    <div class="scenario-columns">
+        <div class="scenario-column">
+            <h3>Scenario A</h3>
+            <div class="input-group">
+                <label for="scenarioAName">Scenario Name</label>
+                <input type="text" id="scenarioAName" placeholder="Scenario A">
+            </div>
+            <div class="input-group">
+                <label for="scenarioARevenue">Revenue Growth (%)</label>
+                <input type="number" id="scenarioARevenue" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioAEmployees">Employee Change (%)</label>
+                <input type="number" id="scenarioAEmployees" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioACosts">Cost Change (%)</label>
+                <input type="number" id="scenarioACosts" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioACustomers">Customer Growth (%)</label>
+                <input type="number" id="scenarioACustomers" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioASatisfaction">Satisfaction Change</label>
+                <input type="number" id="scenarioASatisfaction" placeholder="-5 to +5" min="-5" max="5">
+            </div>
+        </div>
+
+        <div class="scenario-column">
+            <h3>Scenario B</h3>
+            <div class="input-group">
+                <label for="scenarioBName">Scenario Name</label>
+                <input type="text" id="scenarioBName" placeholder="Scenario B">
+            </div>
+            <div class="input-group">
+                <label for="scenarioBRevenue">Revenue Growth (%)</label>
+                <input type="number" id="scenarioBRevenue" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioBEmployees">Employee Change (%)</label>
+                <input type="number" id="scenarioBEmployees" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioBCosts">Cost Change (%)</label>
+                <input type="number" id="scenarioBCosts" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioBCustomers">Customer Growth (%)</label>
+                <input type="number" id="scenarioBCustomers" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioBSatisfaction">Satisfaction Change</label>
+                <input type="number" id="scenarioBSatisfaction" placeholder="-5 to +5" min="-5" max="5">
+            </div>
+        </div>
+
+        <div class="scenario-column">
+            <h3>Scenario C</h3>
+            <div class="input-group">
+                <label for="scenarioCName">Scenario Name</label>
+                <input type="text" id="scenarioCName" placeholder="Scenario C">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCRevenue">Revenue Growth (%)</label>
+                <input type="number" id="scenarioCRevenue" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCEmployees">Employee Change (%)</label>
+                <input type="number" id="scenarioCEmployees" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCCosts">Cost Change (%)</label>
+                <input type="number" id="scenarioCCosts" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCCustomers">Customer Growth (%)</label>
+                <input type="number" id="scenarioCCustomers" placeholder="-50 to +100" min="-50" max="100">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCSatisfaction">Satisfaction Change</label>
+                <input type="number" id="scenarioCSatisfaction" placeholder="-5 to +5" min="-5" max="5">
+            </div>
+        </div>
+    </div>
+
+    <button onclick="compareScenarios()">Compare Scenarios</button>
+    <button onclick="resetScenarios()">Reset</button>
+    <div id="scenarioResult"></div>
+</div>

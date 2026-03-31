@@ -20,6 +20,10 @@
             <button class="tab-btn" data-target="budgetPlanner">Budget Planner</button>
             <button class="tab-btn" data-target="riskAssessment">Risk Assessment</button>
             <button class="tab-btn" data-target="proposalGenerator">Proposal Generator</button>
+            <button class="tab-btn" data-target="clientTracker">Client Tracker</button>
+            <button class="tab-btn" data-target="scenarioPlanner">Scenario Planner</button>
+            <button class="tab-btn" data-target="dashboard">Dashboard</button>
+            <button class="tab-btn" data-target="reportCard">Report Card</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -274,6 +278,300 @@
             <button onclick="generateProposal()">Generate Proposal</button>
             <div id="proposalResult"></div>
         </div>
+
+        <div id="clientTracker" class="tool">
+            <h2>Client Tracker</h2>
+
+            <div class="input-group">
+                <label for="crmClientName">Client Name *</label>
+                <input type="text" id="crmClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label for="crmClientCompany">Company *</label>
+                <input type="text" id="crmClientCompany" placeholder="Enter company name">
+            </div>
+            <div class="input-group">
+                <label for="crmClientEmail">Email</label>
+                <input type="text" id="crmClientEmail" placeholder="Enter email address">
+            </div>
+            <div class="input-group">
+                <label for="crmClientPhone">Phone</label>
+                <input type="text" id="crmClientPhone" placeholder="Enter phone number">
+            </div>
+            <div class="input-group">
+                <label for="crmClientIndustry">Industry</label>
+                <input type="text" id="crmClientIndustry" placeholder="Enter industry">
+            </div>
+            <div class="input-group">
+                <label for="crmClientStage">Deal Stage</label>
+                <select id="crmClientStage">
+                    <option value="Lead">Lead</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Proposal Sent">Proposal Sent</option>
+                    <option value="Negotiation">Negotiation</option>
+                    <option value="Won">Won</option>
+                    <option value="Lost">Lost</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="crmClientNotes">Notes</label>
+                <input type="text" id="crmClientNotes" placeholder="Enter notes">
+            </div>
+            <div class="input-group">
+                <label for="crmClientFollowUp">Follow-Up Date</label>
+                <input type="date" id="crmClientFollowUp">
+            </div>
+
+            <button onclick="addClient()">Add Client</button>
+
+            <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 160px;">
+                    <label for="crmFilterStage">Filter by Stage</label>
+                    <select id="crmFilterStage">
+                        <option value="">All Stages</option>
+                        <option value="Lead">Lead</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Proposal Sent">Proposal Sent</option>
+                        <option value="Negotiation">Negotiation</option>
+                        <option value="Won">Won</option>
+                        <option value="Lost">Lost</option>
+                    </select>
+                </div>
+                <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 200px;">
+                    <label for="crmSearch">Search by Name / Company</label>
+                    <input type="text" id="crmSearch" placeholder="Search clients...">
+                </div>
+            </div>
+
+            <div id="crmResult"></div>
+        </div>
+
+        <div id="dashboard" class="tool">
+            <h2>Client Progress Dashboard</h2>
+
+            <div class="input-group">
+                <label for="dashClientName">New Client Name</label>
+                <input type="text" id="dashClientName" placeholder="Enter client name">
+            </div>
+            <button onclick="addDashboardClient()">Add Client</button>
+
+            <div id="dashClientList" style="margin-top:15px;"></div>
+
+            <hr style="margin:20px 0;border-color:#ddd;">
+
+            <div class="input-group">
+                <label for="dashClientSelect">Select Client</label>
+                <select id="dashClientSelect"></select>
+            </div>
+
+            <div class="input-group">
+                <label for="dashSnapshotDate">Snapshot Date</label>
+                <input type="date" id="dashSnapshotDate">
+            </div>
+
+            <div class="input-group">
+                <label for="dashScore-BusinessOperations">Business Operations (1-5)</label>
+                <input type="number" id="dashScore-BusinessOperations" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-BusinessDevelopment">Business Development (1-5)</label>
+                <input type="number" id="dashScore-BusinessDevelopment" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-Technology">Technology (1-5)</label>
+                <input type="number" id="dashScore-Technology" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-CloudAdoption">Cloud Adoption (1-5)</label>
+                <input type="number" id="dashScore-CloudAdoption" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-DataAnalytics">Data & Analytics (1-5)</label>
+                <input type="number" id="dashScore-DataAnalytics" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-Automation">Automation (1-5)</label>
+                <input type="number" id="dashScore-Automation" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-Security">Security (1-5)</label>
+                <input type="number" id="dashScore-Security" min="1" max="5" placeholder="1-5">
+            </div>
+            <div class="input-group">
+                <label for="dashScore-Culture">Culture (1-5)</label>
+                <input type="number" id="dashScore-Culture" min="1" max="5" placeholder="1-5">
+            </div>
+
+            <button onclick="addSnapshot()">Add Snapshot</button>
+            <button onclick="renderTrends()">View Trends</button>
+
+            <div id="dashboardResult"></div>
+        </div>
+
+        <div id="reportCard" class="tool">
+            <h2>Industry Report Card</h2>
+
+            <div class="input-group">
+                <label for="rcIndustry">Industry</label>
+                <select id="rcIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="rcCompanyName">Company Name</label>
+                <input type="text" id="rcCompanyName" placeholder="Enter company name">
+            </div>
+            <div class="input-group">
+                <label for="rcRevenue">Annual Revenue (USD)</label>
+                <input type="number" id="rcRevenue" placeholder="Enter annual revenue">
+            </div>
+            <div class="input-group">
+                <label for="rcEmployees">Number of Employees</label>
+                <input type="number" id="rcEmployees" placeholder="Enter number of employees">
+            </div>
+            <div class="input-group">
+                <label for="rcSatisfaction">Customer Satisfaction Score (1-10)</label>
+                <input type="number" id="rcSatisfaction" placeholder="Enter score (1-10)" min="1" max="10">
+            </div>
+            <div class="input-group">
+                <label for="rcMarketShare">Market Share (%)</label>
+                <input type="number" id="rcMarketShare" placeholder="Enter market share percentage" min="0" max="100">
+            </div>
+            <div class="input-group">
+                <label for="rcDigitalReadiness">Digital Readiness Score (1-5)</label>
+                <input type="number" id="rcDigitalReadiness" placeholder="Enter score (1-5)" min="1" max="5">
+            </div>
+            <div class="input-group">
+                <label for="rcOperationalEfficiency">Operational Efficiency (1-5)</label>
+                <input type="number" id="rcOperationalEfficiency" placeholder="Enter score (1-5)" min="1" max="5">
+            </div>
+
+            <button onclick="generateReportCard()">Generate Report Card</button>
+
+            <div id="reportCardResult"></div>
+        </div>
+
+        <div id="scenarioPlanner" class="tool">
+            <h2>Scenario Planner</h2>
+
+            <h3>Baseline Metrics</h3>
+            <div class="input-group">
+                <label for="scenarioRevenue">Current Annual Revenue (USD)</label>
+                <input type="number" id="scenarioRevenue" placeholder="Enter annual revenue">
+            </div>
+            <div class="input-group">
+                <label for="scenarioEmployees">Current Employee Count</label>
+                <input type="number" id="scenarioEmployees" placeholder="Enter employee count">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCosts">Current Operating Costs (USD)</label>
+                <input type="number" id="scenarioCosts" placeholder="Enter operating costs">
+            </div>
+            <div class="input-group">
+                <label for="scenarioCustomers">Current Customer Count</label>
+                <input type="number" id="scenarioCustomers" placeholder="Enter customer count">
+            </div>
+            <div class="input-group">
+                <label for="scenarioSatisfaction">Current Customer Satisfaction (1-10)</label>
+                <input type="number" id="scenarioSatisfaction" placeholder="Enter score (1-10)" min="1" max="10">
+            </div>
+
+            <div class="scenario-columns">
+                <div class="scenario-column">
+                    <h3>Scenario A</h3>
+                    <div class="input-group">
+                        <label for="scenarioAName">Scenario Name</label>
+                        <input type="text" id="scenarioAName" placeholder="Scenario A">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioARevenue">Revenue Growth (%)</label>
+                        <input type="number" id="scenarioARevenue" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioAEmployees">Employee Change (%)</label>
+                        <input type="number" id="scenarioAEmployees" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioACosts">Cost Change (%)</label>
+                        <input type="number" id="scenarioACosts" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioACustomers">Customer Growth (%)</label>
+                        <input type="number" id="scenarioACustomers" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioASatisfaction">Satisfaction Change</label>
+                        <input type="number" id="scenarioASatisfaction" placeholder="-5 to +5" min="-5" max="5">
+                    </div>
+                </div>
+
+                <div class="scenario-column">
+                    <h3>Scenario B</h3>
+                    <div class="input-group">
+                        <label for="scenarioBName">Scenario Name</label>
+                        <input type="text" id="scenarioBName" placeholder="Scenario B">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioBRevenue">Revenue Growth (%)</label>
+                        <input type="number" id="scenarioBRevenue" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioBEmployees">Employee Change (%)</label>
+                        <input type="number" id="scenarioBEmployees" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioBCosts">Cost Change (%)</label>
+                        <input type="number" id="scenarioBCosts" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioBCustomers">Customer Growth (%)</label>
+                        <input type="number" id="scenarioBCustomers" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioBSatisfaction">Satisfaction Change</label>
+                        <input type="number" id="scenarioBSatisfaction" placeholder="-5 to +5" min="-5" max="5">
+                    </div>
+                </div>
+
+                <div class="scenario-column">
+                    <h3>Scenario C</h3>
+                    <div class="input-group">
+                        <label for="scenarioCName">Scenario Name</label>
+                        <input type="text" id="scenarioCName" placeholder="Scenario C">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioCRevenue">Revenue Growth (%)</label>
+                        <input type="number" id="scenarioCRevenue" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioCEmployees">Employee Change (%)</label>
+                        <input type="number" id="scenarioCEmployees" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioCCosts">Cost Change (%)</label>
+                        <input type="number" id="scenarioCCosts" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioCCustomers">Customer Growth (%)</label>
+                        <input type="number" id="scenarioCCustomers" placeholder="-50 to +100" min="-50" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="scenarioCSatisfaction">Satisfaction Change</label>
+                        <input type="number" id="scenarioCSatisfaction" placeholder="-5 to +5" min="-5" max="5">
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="compareScenarios()">Compare Scenarios</button>
+            <button onclick="resetScenarios()">Reset</button>
+            <div id="scenarioResult"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -286,6 +584,10 @@
     <script src="budget.js"></script>
     <script src="risk.js"></script>
     <script src="proposal.js"></script>
+    <script src="crm.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="reportcard.js"></script>
+    <script src="scenario.js"></script>
     <script src="sharing.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>

@@ -1,0 +1,85 @@
+<div id="emailTemplateEngine" class="tool">
+    <h2>Email Template Engine</h2>
+
+    <div class="input-group">
+        <label for="emailTemplate">Template</label>
+        <select id="emailTemplate">
+            <option value="initial_outreach">Initial Outreach</option>
+            <option value="post_assessment">Post-Assessment Follow-up</option>
+            <option value="proposal_followup">Proposal Follow-up</option>
+            <option value="quarterly_checkin">Quarterly Check-in</option>
+            <option value="upsell">Upsell Opportunity</option>
+            <option value="thank_you">Thank You / Won Deal</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label for="emailCustomTemplate">Saved Custom Templates</label>
+        <select id="emailCustomTemplate">
+            <option value="">-- None --</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label for="emailRecipientName">Recipient Name *</label>
+        <input type="text" id="emailRecipientName" placeholder="Enter recipient name">
+    </div>
+    <div class="input-group">
+        <label for="emailCompany">Company *</label>
+        <input type="text" id="emailCompany" placeholder="Enter company name">
+    </div>
+    <div class="input-group">
+        <label for="emailIndustry">Industry</label>
+        <select id="emailIndustry">
+            <option value="">-- Select Industry --</option>
+            <option value="Technology">Technology</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Finance">Finance</option>
+            <option value="Retail">Retail</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Professional Services">Professional Services</option>
+            <option value="Education">Education</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="emailSenderName">Sender Name</label>
+        <input type="text" id="emailSenderName" placeholder="Aurora Technologies Team" value="Aurora Technologies Team">
+    </div>
+
+    <h3 style="margin-top:20px; margin-bottom:10px; color:#0A0A2A;">Assessment Scores (Optional)</h3>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <div class="input-group" style="flex:1; min-width:140px;">
+            <label for="emailScoreBizOps">Business Ops (1-5)</label>
+            <input type="number" id="emailScoreBizOps" placeholder="1-5" min="1" max="5">
+        </div>
+        <div class="input-group" style="flex:1; min-width:140px;">
+            <label for="emailScoreTech">Technology (1-5)</label>
+            <input type="number" id="emailScoreTech" placeholder="1-5" min="1" max="5">
+        </div>
+        <div class="input-group" style="flex:1; min-width:140px;">
+            <label for="emailScoreReadiness">Readiness (1-5)</label>
+            <input type="number" id="emailScoreReadiness" placeholder="1-5" min="1" max="5">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="emailProposalAmount">Proposal Amount (USD, Optional)</label>
+        <input type="number" id="emailProposalAmount" placeholder="Enter proposal amount">
+    </div>
+
+    <div class="input-group">
+        <label for="emailCustomNotes">Custom Notes (Optional)</label>
+        <textarea id="emailCustomNotes" rows="3" placeholder="Any additional notes to include..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;box-sizing:border-box;"></textarea>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button onclick="generateEmail()">Generate Email</button>
+        <button onclick="copyEmail()" style="background-color:#0A0A2A;">Copy Email</button>
+        <button onclick="copySubject()" style="background-color:#0A0A2A;">Copy Subject</button>
+        <button onclick="saveCustomTemplate()" style="background-color:#6c757d;">Save as Template</button>
+    </div>
+
+    <div id="emailResult"></div>
+</div>

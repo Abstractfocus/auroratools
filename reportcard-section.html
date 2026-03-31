@@ -1,0 +1,48 @@
+<div id="reportCard" class="tool">
+    <h2>Industry Report Card</h2>
+
+    <div class="input-group">
+        <label for="rcIndustry">Industry</label>
+        <select id="rcIndustry">
+            <option value="">-- Select Industry --</option>
+            <option value="Technology">Technology</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Finance">Finance</option>
+            <option value="Retail">Retail</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="rcCompanyName">Company Name</label>
+        <input type="text" id="rcCompanyName" placeholder="Enter company name">
+    </div>
+    <div class="input-group">
+        <label for="rcRevenue">Annual Revenue (USD)</label>
+        <input type="number" id="rcRevenue" placeholder="Enter annual revenue">
+    </div>
+    <div class="input-group">
+        <label for="rcEmployees">Number of Employees</label>
+        <input type="number" id="rcEmployees" placeholder="Enter number of employees">
+    </div>
+    <div class="input-group">
+        <label for="rcSatisfaction">Customer Satisfaction Score (1-10)</label>
+        <input type="number" id="rcSatisfaction" placeholder="Enter score (1-10)" min="1" max="10">
+    </div>
+    <div class="input-group">
+        <label for="rcMarketShare">Market Share (%)</label>
+        <input type="number" id="rcMarketShare" placeholder="Enter market share percentage" min="0" max="100">
+    </div>
+    <div class="input-group">
+        <label for="rcDigitalReadiness">Digital Readiness Score (1-5)</label>
+        <input type="number" id="rcDigitalReadiness" placeholder="Enter score (1-5)" min="1" max="5">
+    </div>
+    <div class="input-group">
+        <label for="rcOperationalEfficiency">Operational Efficiency (1-5)</label>
+        <input type="number" id="rcOperationalEfficiency" placeholder="Enter score (1-5)" min="1" max="5">
+    </div>
+
+    <button onclick="generateReportCard()">Generate Report Card</button>
+
+    <div id="reportCardResult"></div>
+</div>
