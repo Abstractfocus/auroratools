@@ -34,8 +34,78 @@
             <button onclick="calculateROI()">Calculate ROI</button>
             <div id="roiResult"></div>
         </div>
+
+        <div id="tcoCalculator" class="tool">
+            <h2>TCO Calculator</h2>
+            <div class="input-group">
+                <label for="softwareCost">Software/Licensing Cost (USD)</label>
+                <input type="number" id="softwareCost" placeholder="Enter software cost">
+            </div>
+            <div class="input-group">
+                <label for="hardwareCost">Hardware Cost (USD)</label>
+                <input type="number" id="hardwareCost" placeholder="Enter hardware cost">
+            </div>
+            <div class="input-group">
+                <label for="implementationCost">Implementation Cost (USD)</label>
+                <input type="number" id="implementationCost" placeholder="Enter implementation cost">
+            </div>
+            <div class="input-group">
+                <label for="trainingCost">Training Cost (USD)</label>
+                <input type="number" id="trainingCost" placeholder="Enter training cost">
+            </div>
+            <div class="input-group">
+                <label for="annualMaintenance">Annual Maintenance Cost (USD)</label>
+                <input type="number" id="annualMaintenance" placeholder="Enter annual maintenance cost">
+            </div>
+            <div class="input-group">
+                <label for="yearsOwned">Ownership Period (years)</label>
+                <input type="number" id="yearsOwned" placeholder="Enter number of years" min="1">
+            </div>
+            <button onclick="calculateTCO()">Calculate TCO</button>
+            <div id="tcoResult"></div>
+        </div>
+
+        <div id="timelineEstimator" class="tool">
+            <h2>Project Timeline Estimator</h2>
+            <div class="input-group">
+                <label for="projectScope">Project Scope</label>
+                <select id="projectScope">
+                    <option value="">-- Select Scope --</option>
+                    <option value="small">Small (single feature/module)</option>
+                    <option value="medium">Medium (multi-feature project)</option>
+                    <option value="large">Large (full platform/system)</option>
+                    <option value="enterprise">Enterprise (organization-wide)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="teamSize">Team Size</label>
+                <input type="number" id="teamSize" placeholder="Enter team size" min="1">
+            </div>
+            <div class="input-group">
+                <label for="complexity">Technical Complexity</label>
+                <select id="complexity">
+                    <option value="">-- Select Complexity --</option>
+                    <option value="low">Low (standard tech, clear requirements)</option>
+                    <option value="medium">Medium (some integrations, moderate risk)</option>
+                    <option value="high">High (complex integrations, new tech)</option>
+                    <option value="very_high">Very High (cutting-edge, R&D involved)</option>
+                </select>
+            </div>
+            <button onclick="calculateTimeline()">Estimate Timeline</button>
+            <div id="timelineResult"></div>
+        </div>
+
+        <div id="digitalReadiness" class="tool">
+            <h2>Digital Readiness Score</h2>
+            <div id="readinessQuestions"></div>
+            <button onclick="calculateReadiness()">Calculate Readiness</button>
+            <div id="readinessResult"></div>
+        </div>
     </div>
     <script src="assessment.js"></script>
     <script src="roi.js"></script>
+    <script src="tco.js"></script>
+    <script src="timeline.js"></script>
+    <script src="readiness.js"></script>
 </body>
 </html>

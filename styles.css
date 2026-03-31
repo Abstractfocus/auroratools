@@ -65,11 +65,139 @@ button:hover {
     background-color: #3CC6B7;
 }
 
-#assessmentResult, #roiResult {
+#assessmentResult, #roiResult, #tcoResult, #timelineResult, #readinessResult {
     margin-top: 20px;
     padding: 15px;
     border-radius: 4px;
     background-color: #f8f9fa;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    background-color: white;
+}
+
+/* TCO result grid */
+.result-grid {
+    display: grid;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 4px;
+    border-left: 3px solid #40E0D0;
+}
+
+.result-item.result-highlight {
+    border-left-color: #0A0A2A;
+    font-weight: bold;
+}
+
+.result-label {
+    color: #555;
+}
+
+.result-value {
+    color: #0A0A2A;
+    font-weight: 600;
+}
+
+/* Timeline phases */
+.timeline-phases {
+    margin: 15px 0;
+}
+
+.timeline-phase {
+    margin-bottom: 12px;
+}
+
+.phase-bar {
+    height: 6px;
+    background-color: #40E0D0;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    min-width: 20px;
+}
+
+.phase-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+
+.phase-name {
+    color: #333;
+}
+
+.phase-duration {
+    color: #666;
+    font-weight: 600;
+}
+
+/* Readiness bars */
+.overall-score {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #0A0A2A;
+}
+
+.readiness-bars {
+    margin: 15px 0;
+}
+
+.readiness-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.bar-label {
+    width: 160px;
+    font-size: 0.85em;
+    color: #555;
+    flex-shrink: 0;
+}
+
+.bar-track {
+    flex: 1;
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: #40E0D0;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.bar-score {
+    width: 30px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #0A0A2A;
+}
+
+.level-advanced { color: #28a745; }
+.level-intermediate { color: #40E0D0; }
+.level-developing { color: #ffc107; }
+.level-beginning { color: #dc3545; }
+
+.error {
+    color: #dc3545;
 }
 
 .slider-labels {
