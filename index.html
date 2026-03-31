@@ -1045,7 +1045,10 @@
                 <input type="text" id="ideaPassion" placeholder="e.g. sustainability, education, helping small businesses">
             </div>
 
-            <button onclick="generateBusinessIdeas()">Generate Ideas</button>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="generateBusinessIdeas()">Generate Ideas</button>
+                <button onclick="generateProfileIdeas()" style="background-color:#0A0A2A;">Generate from My Profile</button>
+            </div>
             <div id="ideaGenResult" style="margin-top:20px;"></div>
         </div>
     </div>

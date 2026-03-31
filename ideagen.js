@@ -295,3 +295,193 @@ function updateTargetSegments() {
     var typeSelect = document.getElementById('ideaTargetType');
     if (typeSelect) typeSelect.addEventListener('change', updateTargetSegments);
 })();
+
+// ============================================================
+// Profile-Based Idea Generation
+// ============================================================
+
+var founderProfiles = {
+    default: {
+        name: 'Custom',
+        skills: [],
+        passions: [],
+        strengths: [],
+        industries: [],
+        models: [],
+        segments: []
+    }
+};
+
+// Personalized ideas that go beyond the generic generator —
+// these are hand-crafted combinations tailored to specific founder archetypes.
+
+var personalizedIdeas = {
+    'strategy-consulting-tech': [
+        {
+            name: 'SMB Command Center',
+            elevator: 'An all-in-one SaaS dashboard that gives small business owners the same strategic visibility that enterprise companies get from McKinsey — automated KPI tracking, competitive benchmarking, and AI-generated action plans, all for $299/month.',
+            trend: 'Vertical SaaS',
+            model: 'SaaS (Subscription)',
+            problem: 'SMBs lack strategic visibility into their own business performance',
+            segment: 'SMBs (11-200 employees)',
+            advantage: 'Domain expertise from hundreds of consulting engagements baked into the product',
+            revenue: { score: 9, label: 'Very High' },
+            difficulty: { score: 6, label: 'Challenging' },
+            marketSize: '$50B+ (SMB software market)',
+            nextSteps: 'You already built the prototype — Aurora Tools IS this product. Package it as a hosted SaaS with client logins, persistent data, and white-label options.'
+        },
+        {
+            name: 'Fractional CTO Marketplace',
+            elevator: 'A marketplace connecting SMBs with vetted fractional CTOs for part-time technology leadership. Businesses get enterprise-grade tech strategy at 20% of the cost of a full-time hire. Platform handles matching, scheduling, and deliverable tracking.',
+            trend: 'Fractional executive services',
+            model: 'Marketplace',
+            problem: 'SMBs need technology leadership but cannot afford a full-time CTO',
+            segment: 'SMBs (11-200 employees)',
+            advantage: 'Network effects — more CTOs attract more businesses, more businesses attract more CTOs',
+            revenue: { score: 8, label: 'High' },
+            difficulty: { score: 7, label: 'Hard' },
+            marketSize: '$15B (fractional executive market)',
+            nextSteps: 'Start as a curated service (you do the matching manually), validate demand with 10 placements, then build the platform.'
+        },
+        {
+            name: 'Digital Transformation Scorecard (Productized)',
+            elevator: 'Turn your SMB Assessment + Digital Readiness tools into a paid productized service. Clients pay $2,500 for an automated assessment, a 30-page branded report, and a 1-hour strategy call. Scale to 20+ per month with minimal effort.',
+            trend: 'Productized consulting',
+            model: 'Productized Service',
+            problem: 'Businesses want strategic advice but full consulting engagements are too expensive',
+            segment: 'SMBs (11-200 employees)',
+            advantage: 'You already built the tools — just add a payment layer and premium report generation',
+            revenue: { score: 7, label: 'High' },
+            difficulty: { score: 2, label: 'Easy' },
+            marketSize: '$8B (SMB consulting market)',
+            nextSteps: 'Add Stripe checkout, auto-generate PDF reports from existing tool outputs, book strategy calls via Calendly. Launch in 2 weeks.'
+        },
+        {
+            name: 'Pipeline Intelligence Platform',
+            elevator: 'Analytics SaaS that connects to CRMs (HubSpot, Salesforce, Pipedrive) and provides the kind of pipeline analytics, deal velocity tracking, and revenue forecasting you built — but as a plug-and-play product for sales teams.',
+            trend: 'Data privacy solutions',
+            model: 'SaaS (Subscription)',
+            problem: 'Sales teams lack actionable pipeline analytics beyond basic CRM reports',
+            segment: 'Mid-market (201-1000)',
+            advantage: 'First-mover in SMB-focused pipeline intelligence (competitors target enterprise)',
+            revenue: { score: 8, label: 'High' },
+            difficulty: { score: 7, label: 'Hard' },
+            marketSize: '$25B (sales intelligence market)',
+            nextSteps: 'Build a HubSpot integration as an MVP. Your pipeline.js already has the analytics logic — adapt it to pull from real CRM APIs.'
+        },
+        {
+            name: 'Aurora Accelerator (Licensing)',
+            elevator: 'License the entire Aurora Tools platform to other consulting firms, agencies, and MSPs as a white-label solution. They rebrand it and use it with their own clients. You charge $500/month per licensee.',
+            trend: 'Low-code/no-code platforms',
+            model: 'Franchise/License',
+            problem: 'Other consultancies want professional tools but do not have the resources to build them',
+            segment: 'Solopreneurs/Freelancers',
+            advantage: 'Already built — just add multi-tenancy, branding customization, and a billing layer',
+            revenue: { score: 8, label: 'High' },
+            difficulty: { score: 4, label: 'Moderate' },
+            marketSize: '$12B (consulting tools market)',
+            nextSteps: 'Add a settings page for logo/colors/company name. Deploy as a hosted multi-tenant app. Recruit 5 beta licensees from your network.'
+        }
+    ]
+};
+
+function generateProfileIdeas() {
+    var resultDiv = document.getElementById('ideaGenResult');
+
+    var ideas = personalizedIdeas['strategy-consulting-tech'];
+
+    var html = '<div style="background:#0A0A2A;color:white;padding:20px;border-radius:8px;margin-bottom:20px;">';
+    html += '<h3 style="color:#40E0D0;margin-top:0;">Personalized Ideas for Your Profile</h3>';
+    html += '<p style="color:#ccc;margin:0;">Based on your skills (business strategy, sales pipeline, technology leadership, product thinking, decision frameworks) and passions (helping SMBs, efficiency, automation, comprehensive tooling, strategic accuracy, new business creation).</p>';
+    html += '</div>';
+
+    ideas.forEach(function(idea, idx) {
+        var diffColor = idea.difficulty.score <= 3 ? '#28a745' : idea.difficulty.score <= 6 ? '#ffc107' : '#dc3545';
+        var revColor = idea.revenue.score >= 7 ? '#28a745' : idea.revenue.score >= 4 ? '#ffc107' : '#dc3545';
+
+        html += '<div class="idea-card" style="border-left:4px solid #40E0D0;">';
+        html += '<div class="idea-header">';
+        html += '<span class="idea-rank">#' + (idx + 1) + '</span>';
+        html += '<h4 class="idea-name">' + escapeIdeaHTML(idea.name) + '</h4>';
+        html += '</div>';
+
+        html += '<p class="idea-elevator">' + escapeIdeaHTML(idea.elevator) + '</p>';
+
+        html += '<div class="idea-meta">';
+        html += '<div class="idea-tag">Trend: ' + escapeIdeaHTML(idea.trend) + '</div>';
+        html += '<div class="idea-tag">Model: ' + escapeIdeaHTML(idea.model) + '</div>';
+        html += '<div class="idea-tag">Segment: ' + escapeIdeaHTML(idea.segment) + '</div>';
+        html += '</div>';
+
+        html += '<div class="idea-metrics">';
+        html += '<div class="idea-metric">';
+        html += '<span class="idea-metric-label">Revenue Potential</span>';
+        html += '<div class="idea-meter"><div class="idea-meter-fill" style="width:' + (idea.revenue.score * 10) + '%;background-color:' + revColor + ';"></div></div>';
+        html += '<span class="idea-metric-value">' + idea.revenue.label + '</span>';
+        html += '</div>';
+
+        html += '<div class="idea-metric">';
+        html += '<span class="idea-metric-label">Difficulty</span>';
+        html += '<div class="idea-meter"><div class="idea-meter-fill" style="width:' + (idea.difficulty.score * 10) + '%;background-color:' + diffColor + ';"></div></div>';
+        html += '<span class="idea-metric-value">' + idea.difficulty.label + '</span>';
+        html += '</div>';
+
+        html += '<div class="idea-metric">';
+        html += '<span class="idea-metric-label">Market Size</span>';
+        html += '<span class="idea-metric-value" style="font-weight:600;">' + idea.marketSize + '</span>';
+        html += '</div>';
+        html += '</div>';
+
+        html += '<div class="idea-details">';
+        html += '<p><strong>Problem Solved:</strong> ' + escapeIdeaHTML(idea.problem) + '</p>';
+        html += '<p><strong>Competitive Advantage:</strong> ' + escapeIdeaHTML(idea.advantage) + '</p>';
+        html += '<p style="color:#0A0A2A;font-weight:600;"><strong>Your Next Step:</strong> ' + escapeIdeaHTML(idea.nextSteps) + '</p>';
+        html += '</div>';
+        html += '</div>';
+    });
+
+    html += '<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">';
+    html += '<button class="export-btn" onclick="copyProfileIdeas()">Copy All Ideas</button>';
+    html += '<button class="export-btn" onclick="exportProfileIdeasCSV()">Export CSV</button>';
+    html += '</div>';
+
+    resultDiv.innerHTML = html;
+
+    // Save to history
+    ideaHistory.push({
+        timestamp: new Date().toISOString(),
+        industry: 'Personalized (Multi-industry)',
+        targetType: 'B2B',
+        painPoint: 'Efficiency + Growth',
+        ideas: ideas
+    });
+}
+
+function copyProfileIdeas() {
+    var ideas = personalizedIdeas['strategy-consulting-tech'];
+    var text = 'PERSONALIZED BUSINESS IDEAS\n';
+    text += 'Generated for: Aurora Technologies Founder Profile\n';
+    text += '='.repeat(50) + '\n\n';
+    ideas.forEach(function(idea, idx) {
+        text += '#' + (idx + 1) + ': ' + idea.name + '\n';
+        text += idea.elevator + '\n';
+        text += 'Revenue: ' + idea.revenue.label + ' | Difficulty: ' + idea.difficulty.label + ' | Market: ' + idea.marketSize + '\n';
+        text += 'Problem: ' + idea.problem + '\n';
+        text += 'Advantage: ' + idea.advantage + '\n';
+        text += 'Next Step: ' + idea.nextSteps + '\n\n';
+    });
+    navigator.clipboard.writeText(text).then(function() {
+        if (typeof showToast === 'function') showToast('Ideas copied to clipboard!');
+    });
+}
+
+function exportProfileIdeasCSV() {
+    var ideas = personalizedIdeas['strategy-consulting-tech'];
+    var headers = ['Rank', 'Name', 'Model', 'Segment', 'Problem', 'Advantage', 'Revenue', 'Difficulty', 'Market Size', 'Next Step'];
+    var rows = ideas.map(function(idea, idx) {
+        return [idx + 1, idea.name, idea.model, idea.segment, idea.problem, idea.advantage, idea.revenue.label, idea.difficulty.label, idea.marketSize, idea.nextSteps];
+    });
+    if (typeof exportToCSV === 'function') {
+        exportToCSV('personalized-business-ideas.csv', headers, rows);
+    }
+}
