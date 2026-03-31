@@ -2588,3 +2588,758 @@ body.dark-mode #pricingResult td {
     .utilization-bar-container { background: #333; }
     .utilization-bar-target { background: #ccc; }
 }
+
+/* ===== Invoice Generator ===== */
+
+.inv-line-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.inv-li-desc {
+    flex: 3;
+    min-width: 150px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.inv-li-qty,
+.inv-li-rate {
+    flex: 1;
+    min-width: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.inv-li-amount {
+    flex: 1;
+    min-width: 80px;
+    font-weight: 600;
+    text-align: right;
+    color: #0A0A2A;
+}
+
+.inv-li-remove {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.inv-li-remove:hover {
+    background: #c82333;
+}
+
+.invoice-preview {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 3px solid #40E0D0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.invoice-brand h2 {
+    color: #0A0A2A;
+    margin: 0 0 4px 0;
+}
+
+.invoice-brand p {
+    color: #666;
+    margin: 0;
+}
+
+.invoice-meta {
+    text-align: right;
+}
+
+.invoice-meta h3 {
+    color: #0A0A2A;
+    margin: 0 0 8px 0;
+    font-size: 1.4em;
+}
+
+.invoice-meta p {
+    margin: 2px 0;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.invoice-client-info {
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.invoice-client-info p {
+    margin: 2px 0;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.invoice-table th {
+    background: #0A0A2A;
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.invoice-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.invoice-total {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.invoice-total-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    padding: 4px 12px;
+    font-size: 0.95em;
+}
+
+.invoice-grand-total {
+    font-weight: 700;
+    font-size: 1.1em;
+    border-top: 2px solid #0A0A2A;
+    padding-top: 8px;
+    margin-top: 4px;
+}
+
+.invoice-terms,
+.invoice-notes {
+    margin-bottom: 12px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.invoice-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inv-action-btn {
+    background: #40E0D0;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.inv-action-btn:hover {
+    background: #3CC6B7;
+}
+
+.inv-status-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.inv-status-draft {
+    background: #e9ecef;
+    color: #555;
+}
+
+.inv-status-sent {
+    background: #d4edda;
+    color: #155724;
+}
+
+.inv-status-paid {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.inv-status-overdue {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.invoice-list-table {
+    margin-top: 10px;
+}
+
+#invClientAddress,
+#invNotes,
+#invPaymentTerms {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== Engagement Health Monitor ===== */
+
+.eh-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.health-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 5px solid #ddd;
+}
+
+.health-card-green {
+    border-left-color: #28a745;
+}
+
+.health-card-yellow {
+    border-left-color: #ffc107;
+}
+
+.health-card-red {
+    border-left-color: #dc3545;
+}
+
+.health-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.health-card-header h4 {
+    margin: 0;
+    color: #0A0A2A;
+}
+
+.health-card-client {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.eh-delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: auto;
+}
+
+.eh-delete-btn:hover {
+    background: #c82333;
+}
+
+.health-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.health-indicator-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.health-indicator-label {
+    font-size: 0.85em;
+    color: #555;
+    min-width: 90px;
+}
+
+.health-indicator {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.health-green {
+    background: #d4edda;
+    color: #155724;
+}
+
+.health-yellow {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.health-red {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.eh-update-form {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 10px;
+}
+
+.eh-update-form h5 {
+    margin: 0 0 8px 0;
+    color: #0A0A2A;
+}
+
+.eh-update-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.eh-update-fields .input-group {
+    margin-bottom: 0;
+}
+
+.eh-portfolio-summary {
+    margin-bottom: 16px;
+}
+
+.eh-summary-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.eh-summary-card h3 {
+    margin: 0 0 8px 0;
+    color: #0A0A2A;
+}
+
+.eh-summary-card p {
+    margin: 8px 0 0 0;
+    color: #666;
+}
+
+.eh-alerts-section {
+    margin-bottom: 16px;
+}
+
+.eh-alerts-card {
+    background: #fff0f0;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.eh-alerts-card h3 {
+    margin: 0 0 8px 0;
+    color: #dc3545;
+}
+
+.eh-alerts-card ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.eh-alerts-card li {
+    margin-bottom: 4px;
+}
+
+/* ===== Invoice Dark Mode ===== */
+
+body.dark-mode .invoice-preview {
+    background: #16213e;
+    border-color: #333;
+}
+
+body.dark-mode .invoice-header {
+    border-bottom-color: #40E0D0;
+}
+
+body.dark-mode .invoice-brand h2 {
+    color: #40E0D0;
+}
+
+body.dark-mode .invoice-brand p {
+    color: #aaa;
+}
+
+body.dark-mode .invoice-meta h3 {
+    color: #40E0D0;
+}
+
+body.dark-mode .invoice-meta p {
+    color: #bbb;
+}
+
+body.dark-mode .invoice-client-info {
+    background: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .invoice-table th {
+    background: #0f3460;
+}
+
+body.dark-mode .invoice-table td {
+    border-bottom-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .invoice-table tbody tr:nth-child(even) {
+    background: #1a1a2e;
+}
+
+body.dark-mode .invoice-grand-total {
+    border-top-color: #40E0D0;
+    color: #40E0D0;
+}
+
+body.dark-mode .invoice-terms,
+body.dark-mode .invoice-notes {
+    color: #bbb;
+}
+
+body.dark-mode .inv-li-desc,
+body.dark-mode .inv-li-qty,
+body.dark-mode .inv-li-rate {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+body.dark-mode .inv-li-amount {
+    color: #40E0D0;
+}
+
+body.dark-mode .inv-status-draft {
+    background: #333;
+    color: #aaa;
+}
+
+body.dark-mode .inv-status-sent {
+    background: #1a3a2a;
+    color: #6fdc8c;
+}
+
+body.dark-mode .inv-status-paid {
+    background: #1a2a4a;
+    color: #6cb4ee;
+}
+
+body.dark-mode .inv-status-overdue {
+    background: #3a1a1a;
+    color: #ee6c6c;
+}
+
+body.dark-mode #invClientAddress,
+body.dark-mode #invNotes,
+body.dark-mode #invPaymentTerms {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+/* ===== Engagement Health Dark Mode ===== */
+
+body.dark-mode .health-card {
+    background: #16213e;
+    border-color: #333;
+}
+
+body.dark-mode .health-card-green {
+    border-left-color: #28a745;
+}
+
+body.dark-mode .health-card-yellow {
+    border-left-color: #ffc107;
+}
+
+body.dark-mode .health-card-red {
+    border-left-color: #dc3545;
+}
+
+body.dark-mode .health-card-header h4 {
+    color: #40E0D0;
+}
+
+body.dark-mode .health-card-client {
+    color: #aaa;
+}
+
+body.dark-mode .health-indicator-label {
+    color: #bbb;
+}
+
+body.dark-mode .health-green {
+    background: #1a3a2a;
+    color: #6fdc8c;
+}
+
+body.dark-mode .health-yellow {
+    background: #3a3a1a;
+    color: #ffe066;
+}
+
+body.dark-mode .health-red {
+    background: #3a1a1a;
+    color: #ee6c6c;
+}
+
+body.dark-mode .eh-update-form {
+    border-top-color: #333;
+}
+
+body.dark-mode .eh-update-form h5 {
+    color: #40E0D0;
+}
+
+body.dark-mode .eh-summary-card {
+    background: #16213e;
+}
+
+body.dark-mode .eh-summary-card h3 {
+    color: #40E0D0;
+}
+
+body.dark-mode .eh-summary-card p {
+    color: #aaa;
+}
+
+body.dark-mode .eh-alerts-card {
+    background: #2a1a1a;
+    border-color: #dc3545;
+}
+
+body.dark-mode .eh-alerts-card h3 {
+    color: #ee6c6c;
+}
+
+body.dark-mode .eh-alerts-card li {
+    color: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .invoice-preview { background: #16213e; border-color: #333; }
+    .invoice-header { border-bottom-color: #40E0D0; }
+    .invoice-brand h2 { color: #40E0D0; }
+    .invoice-client-info { background: #1a1a2e; color: #e0e0e0; }
+    .invoice-table th { background: #0f3460; }
+    .invoice-table td { border-bottom-color: #333; color: #e0e0e0; }
+    .invoice-table tbody tr:nth-child(even) { background: #1a1a2e; }
+    .invoice-grand-total { border-top-color: #40E0D0; color: #40E0D0; }
+    .health-card { background: #16213e; border-color: #333; }
+    .health-card-header h4 { color: #40E0D0; }
+    .health-indicator-label { color: #bbb; }
+    .health-green { background: #1a3a2a; color: #6fdc8c; }
+    .health-yellow { background: #3a3a1a; color: #ffe066; }
+    .health-red { background: #3a1a1a; color: #ee6c6c; }
+    .eh-summary-card { background: #16213e; }
+    .eh-alerts-card { background: #2a1a1a; border-color: #dc3545; }
+}
+
+/* ===== PR Pitch Generator ===== */
+
+.press-release {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px;
+    margin-top: 12px;
+    line-height: 1.7;
+    font-size: 0.95em;
+}
+
+.press-header {
+    border-bottom: 2px solid #0A0A2A;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+}
+
+.pitch-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.pitch-tab {
+    padding: 10px 24px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background: #f0f0f0;
+    color: #555;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pitch-tab:hover {
+    background: #e0e0e0;
+}
+
+.pitch-tab.active {
+    background: #fff;
+    color: #0A0A2A;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+}
+
+/* ===== Campaign ROI Tracker ===== */
+
+.campaign-card {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.campaign-card-label {
+    font-size: 0.8em;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.campaign-card-value {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #0A0A2A;
+}
+
+.campaign-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.channel-performance {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.channel-performance th {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #555;
+}
+
+/* Dark mode for PR Pitch */
+body.dark-mode .press-release {
+    background: #16213e;
+    border-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .press-header {
+    border-bottom-color: #40E0D0;
+}
+
+body.dark-mode .pitch-tab {
+    background: #1a1a2e;
+    border-color: #333;
+    color: #aaa;
+}
+
+body.dark-mode .pitch-tab:hover {
+    background: #222;
+}
+
+body.dark-mode .pitch-tab.active {
+    background: #16213e;
+    color: #40E0D0;
+    border-bottom-color: #16213e;
+}
+
+body.dark-mode .press-release blockquote {
+    background: #1a1a2e;
+    border-left-color: #40E0D0;
+    color: #ccc;
+}
+
+/* Dark mode for Campaign ROI */
+body.dark-mode .campaign-card {
+    background: #16213e;
+    border-color: #333;
+}
+
+body.dark-mode .campaign-card-label {
+    color: #aaa;
+}
+
+body.dark-mode .campaign-card-value {
+    color: #e0e0e0;
+}
+
+body.dark-mode .channel-performance {
+    background: #16213e;
+}
+
+body.dark-mode .channel-performance th {
+    color: #aaa;
+}
+
+body.dark-mode .channel-performance td {
+    border-bottom-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode #campaignDashResult table td,
+body.dark-mode #campaignDashResult table th {
+    border-bottom-color: #333;
+    color: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .press-release { background: #16213e; border-color: #333; color: #e0e0e0; }
+    .press-header { border-bottom-color: #40E0D0; }
+    .pitch-tab { background: #1a1a2e; border-color: #333; color: #aaa; }
+    .pitch-tab.active { background: #16213e; color: #40E0D0; border-bottom-color: #16213e; }
+    .press-release blockquote { background: #1a1a2e; border-left-color: #40E0D0; color: #ccc; }
+    .campaign-card { background: #16213e; border-color: #333; }
+    .campaign-card-label { color: #aaa; }
+    .campaign-card-value { color: #e0e0e0; }
+    .channel-performance { background: #16213e; }
+    .channel-performance th { color: #aaa; }
+    .channel-performance td { border-bottom-color: #333; color: #e0e0e0; }
+}

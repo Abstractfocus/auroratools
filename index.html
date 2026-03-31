@@ -1463,6 +1463,109 @@
 
             <div id="campaignDashResult"></div>
         </div>
+
+        <div id="automationROI" class="tool">
+            <h2>Automation ROI Calculator</h2>
+            <p>Calculate time and cost savings from automating manual workflows.</p>
+            <div id="automationProcessList"></div>
+            <div style="margin:12px 0;display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="addAutomationProcess()">+ Add Process</button>
+            </div>
+            <h3 style="margin-top:20px;">Cost Parameters</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div class="input-group">
+                    <label for="autoImplCost">Implementation Cost (one-time, $)</label>
+                    <input type="number" id="autoImplCost" placeholder="e.g. 25000" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="autoOngoingCost">Ongoing Monthly Cost ($)</label>
+                    <input type="number" id="autoOngoingCost" placeholder="e.g. 500" min="0">
+                </div>
+            </div>
+            <button onclick="calculateAutomationROI()">Calculate Automation ROI</button>
+            <div id="automationROIResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="contentCalendar" class="tool">
+            <h2>Content Calendar Planner</h2>
+            <p>Plan marketing campaigns, social posts, and blog schedule.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div class="input-group">
+                    <label for="ccTitle">Title</label>
+                    <input type="text" id="ccTitle" placeholder="Content title">
+                </div>
+                <div class="input-group">
+                    <label for="ccType">Type</label>
+                    <select id="ccType">
+                        <option>Blog Post</option><option>Social Media</option><option>Email Campaign</option>
+                        <option>Webinar</option><option>Case Study</option><option>Press Release</option>
+                        <option>Video</option><option>Podcast</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="ccChannel">Channel</label>
+                    <select id="ccChannel">
+                        <option>LinkedIn</option><option>Twitter</option><option>Facebook</option>
+                        <option>Instagram</option><option>Website</option><option>Email</option><option>YouTube</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="ccStatus">Status</label>
+                    <select id="ccStatus">
+                        <option>Idea</option><option>Planned</option><option>In Progress</option>
+                        <option>Review</option><option>Published</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="ccDate">Publish Date</label>
+                    <input type="date" id="ccDate">
+                </div>
+                <div class="input-group">
+                    <label for="ccAuthor">Author</label>
+                    <input type="text" id="ccAuthor" placeholder="Author name">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="ccNotes">Notes</label>
+                <textarea id="ccNotes" rows="2" placeholder="Additional notes..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-top:5px;font-family:inherit;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="ccTags">Tags (comma-separated)</label>
+                <input type="text" id="ccTags" placeholder="e.g. launch, product, social">
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+                <button id="ccSubmitBtn" onclick="addContentItem()">Add Content Item</button>
+                <button onclick="exportContentCSV()" style="background:#0A0A2A;">Export CSV</button>
+            </div>
+
+            <div id="ccStats"></div>
+
+            <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
+                <strong style="margin-right:8px;">View:</strong>
+                <button class="cc-view-btn active" data-view="pipeline" onclick="switchContentView('pipeline')">Pipeline</button>
+                <button class="cc-view-btn" data-view="calendar" onclick="switchContentView('calendar')">Calendar</button>
+                <button class="cc-view-btn" data-view="list" onclick="switchContentView('list')">List</button>
+                <span style="margin-left:16px;color:#888;">|</span>
+                <label style="margin-left:8px;font-size:0.85em;">Type: <select id="ccFilterType" onchange="filterContent()" style="width:auto;padding:4px;font-size:0.9em;">
+                    <option value="">All</option>
+                    <option>Blog Post</option><option>Social Media</option><option>Email Campaign</option>
+                    <option>Webinar</option><option>Case Study</option><option>Press Release</option>
+                    <option>Video</option><option>Podcast</option>
+                </select></label>
+                <label style="font-size:0.85em;">Status: <select id="ccFilterStatus" onchange="filterContent()" style="width:auto;padding:4px;font-size:0.9em;">
+                    <option value="">All</option>
+                    <option>Idea</option><option>Planned</option><option>In Progress</option>
+                    <option>Review</option><option>Published</option>
+                </select></label>
+                <label style="font-size:0.85em;">Channel: <select id="ccFilterChannel" onchange="filterContent()" style="width:auto;padding:4px;font-size:0.9em;">
+                    <option value="">All</option>
+                    <option>LinkedIn</option><option>Twitter</option><option>Facebook</option>
+                    <option>Instagram</option><option>Website</option><option>Email</option><option>YouTube</option>
+                </select></label>
+            </div>
+
+            <div id="ccViewContainer"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -1501,6 +1604,8 @@
     <script src="dataready.js"></script>
     <script src="prpitch.js"></script>
     <script src="campaignroi.js"></script>
+    <script src="automationroi.js"></script>
+    <script src="contentcal.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
 </body>
