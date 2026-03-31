@@ -1302,6 +1302,167 @@
             <button onclick="assessDataReadiness()">Assess Readiness</button>
             <div id="dataReadinessResult" style="margin-top:20px;"></div>
         </div>
+
+        <div id="prPitchGenerator" class="tool">
+            <h2>PR Pitch Generator</h2>
+            <div class="input-group">
+                <label for="prCompany">Company Name</label>
+                <input type="text" id="prCompany" value="Aurora Technologies" placeholder="Company name">
+            </div>
+            <div class="input-group">
+                <label for="prPitchType">Pitch Type</label>
+                <select id="prPitchType">
+                    <option value="">-- Select Pitch Type --</option>
+                    <option value="Product Launch">Product Launch</option>
+                    <option value="Funding Announcement">Funding Announcement</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Award/Recognition">Award/Recognition</option>
+                    <option value="Industry Report">Industry Report</option>
+                    <option value="Executive Hire">Executive Hire</option>
+                    <option value="Company Milestone">Company Milestone</option>
+                    <option value="Event">Event</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="prHeadline">Headline</label>
+                <input type="text" id="prHeadline" placeholder="Enter your headline">
+            </div>
+            <div class="input-group">
+                <label for="prDetails">Key Details</label>
+                <textarea id="prDetails" rows="4" placeholder="Enter the core news and key details..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;font-family:inherit;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="prAudience">Target Audience</label>
+                <select id="prAudience">
+                    <option value="">-- Select Target Audience --</option>
+                    <option value="Tech Media">Tech Media</option>
+                    <option value="Business Press">Business Press</option>
+                    <option value="Industry Trade">Industry Trade</option>
+                    <option value="Local News">Local News</option>
+                    <option value="General Consumer">General Consumer</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="prSpokesName">Spokesperson Name</label>
+                <input type="text" id="prSpokesName" placeholder="e.g., Jane Smith">
+            </div>
+            <div class="input-group">
+                <label for="prSpokesTitle">Spokesperson Title</label>
+                <input type="text" id="prSpokesTitle" placeholder="e.g., CEO">
+            </div>
+            <div class="input-group">
+                <label for="prQuote">Quote from Spokesperson (optional)</label>
+                <textarea id="prQuote" rows="3" placeholder="Enter a quote..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;font-family:inherit;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="prBoilerplate">Company Boilerplate</label>
+                <textarea id="prBoilerplate" rows="3" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;font-family:inherit;">Aurora Technologies is a leading technology consulting firm specializing in digital transformation, cloud solutions, and data analytics. Founded with a mission to empower businesses through innovative technology, Aurora Technologies partners with organizations of all sizes to drive growth, efficiency, and competitive advantage.</textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                <div class="input-group">
+                    <label for="prContactName">Contact Name</label>
+                    <input type="text" id="prContactName" placeholder="Media contact name">
+                </div>
+                <div class="input-group">
+                    <label for="prContactEmail">Contact Email</label>
+                    <input type="text" id="prContactEmail" placeholder="email@company.com">
+                </div>
+                <div class="input-group">
+                    <label for="prContactPhone">Contact Phone</label>
+                    <input type="text" id="prContactPhone" placeholder="(555) 123-4567">
+                </div>
+            </div>
+            <button onclick="generatePitch()">Generate Pitch</button>
+            <div id="prPitchResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="campaignTracker" class="tool">
+            <h2>Campaign ROI Tracker</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div class="input-group">
+                    <label for="campName">Campaign Name</label>
+                    <input type="text" id="campName" placeholder="e.g., Q1 Brand Awareness">
+                </div>
+                <div class="input-group">
+                    <label for="campChannel">Channel</label>
+                    <select id="campChannel">
+                        <option value="">-- Select Channel --</option>
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Facebook Ads">Facebook Ads</option>
+                        <option value="LinkedIn Ads">LinkedIn Ads</option>
+                        <option value="Email Marketing">Email Marketing</option>
+                        <option value="Content Marketing">Content Marketing</option>
+                        <option value="SEO">SEO</option>
+                        <option value="Events">Events</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="campStartDate">Start Date</label>
+                    <input type="date" id="campStartDate">
+                </div>
+                <div class="input-group">
+                    <label for="campEndDate">End Date</label>
+                    <input type="date" id="campEndDate">
+                </div>
+                <div class="input-group">
+                    <label for="campBudget">Budget Spent ($)</label>
+                    <input type="number" id="campBudget" placeholder="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="campLeads">Leads Generated</label>
+                    <input type="number" id="campLeads" placeholder="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="campConversions">Conversions</label>
+                    <input type="number" id="campConversions" placeholder="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="campRevenue">Revenue Attributed ($)</label>
+                    <input type="number" id="campRevenue" placeholder="0" min="0">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="campStatus">Status</label>
+                <select id="campStatus">
+                    <option value="Active">Active</option>
+                    <option value="Paused">Paused</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <button id="campSubmitBtn" onclick="addCampaign()">Add Campaign</button>
+
+            <h3 style="margin-top:24px;">Filters</h3>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+                <div class="input-group" style="flex:1;min-width:150px;">
+                    <label for="campFilterChannel">Channel</label>
+                    <select id="campFilterChannel" onchange="filterCampaigns()">
+                        <option value="">All Channels</option>
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Facebook Ads">Facebook Ads</option>
+                        <option value="LinkedIn Ads">LinkedIn Ads</option>
+                        <option value="Email Marketing">Email Marketing</option>
+                        <option value="Content Marketing">Content Marketing</option>
+                        <option value="SEO">SEO</option>
+                        <option value="Events">Events</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group" style="flex:1;min-width:150px;">
+                    <label for="campFilterStatus">Status</label>
+                    <select id="campFilterStatus" onchange="filterCampaigns()">
+                        <option value="">All Statuses</option>
+                        <option value="Active">Active</option>
+                        <option value="Paused">Paused</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="campaignDashResult"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -1338,6 +1499,8 @@
     <script src="sharing.js"></script>
     <script src="aieval.js"></script>
     <script src="dataready.js"></script>
+    <script src="prpitch.js"></script>
+    <script src="campaignroi.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
 </body>
