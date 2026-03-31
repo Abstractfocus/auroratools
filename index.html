@@ -39,6 +39,8 @@
             <button class="tab-btn" data-target="utilizationTracker">Utilization</button>
             <button class="tab-btn" data-target="invoiceGenerator">Invoices</button>
             <button class="tab-btn" data-target="engagementHealth">Eng. Health</button>
+            <button class="tab-btn" data-target="aiEvaluator">AI Evaluator</button>
+            <button class="tab-btn" data-target="dataReadiness">Data Readiness</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -1278,6 +1280,24 @@
 
             <div id="ehDashboard"></div>
         </div>
+        <div id="aiEvaluator" class="tool">
+            <h2>AI Use Case Evaluator</h2>
+            <p>Assess which business processes are best suited for AI automation. Add use cases below, score their attributes, and evaluate readiness.</p>
+            <div id="aiUseCaseList"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+                <button onclick="addAIUseCase()">+ Add Use Case</button>
+                <button onclick="evaluateAIUseCases()" style="background-color:#0A0A2A;">Evaluate Use Cases</button>
+            </div>
+            <div id="aiEvalResult" style="margin-top:20px;"></div>
+        </div>
+
+        <div id="dataReadiness" class="tool">
+            <h2>Data Readiness Assessment</h2>
+            <p>Evaluate whether your data infrastructure is ready for AI/ML initiatives. Rate each item from 1 (not at all) to 5 (fully mature).</p>
+            <div id="dataReadinessForm"></div>
+            <button onclick="assessDataReadiness()">Assess Readiness</button>
+            <div id="dataReadinessResult" style="margin-top:20px;"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -1312,6 +1332,8 @@
     <script src="invoice.js"></script>
     <script src="enghealth.js"></script>
     <script src="sharing.js"></script>
+    <script src="aieval.js"></script>
+    <script src="dataready.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
 </body>
