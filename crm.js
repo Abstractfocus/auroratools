@@ -295,13 +295,42 @@ function saveClient(id) {
     var row = document.getElementById('crm-row-' + id);
     if (!row) return;
 
+    var oldStage = clients[idx].stage;
+
     var inputs = row.querySelectorAll('.crm-inline-input');
     inputs.forEach(function (input) {
         var field = input.getAttribute('data-field');
         clients[idx][field] = input.value.trim();
     });
 
+    var newStage = clients[idx].stage;
+
     saveCRMClients(clients);
+
+    if (typeof triggerNotification === 'function' && oldStage !== newStage) {
+        triggerNotification('stage_change', {
+            name: clients[idx].name,
+            company: clients[idx].company,
+            oldStage: oldStage,
+            newStage: newStage,
+            clientId: id
+        });
+        if (newStage === 'Won') {
+            triggerNotification('deal_won', {
+                name: clients[idx].name,
+                company: clients[idx].company,
+                clientId: id
+            });
+        }
+        if (newStage === 'Lost') {
+            triggerNotification('deal_lost', {
+                name: clients[idx].name,
+                company: clients[idx].company,
+                clientId: id
+            });
+        }
+    }
+
     renderClients();
 }
 

@@ -31,6 +31,7 @@
             <button class="tab-btn" data-target="kpiDashboard">KPI Dashboard</button>
             <button class="tab-btn" data-target="emailTemplateEngine">Email Templates</button>
             <button class="tab-btn" data-target="assessmentReminders">Reminders</button>
+            <button class="tab-btn" data-target="pipelineAnalytics">Pipeline Analytics</button>
         </nav>
 
         <div id="smbAssessment" class="tool">
@@ -970,6 +971,12 @@
                 <button onclick="exportKPIs()" style="background-color:#6f42c1;">Export All CSV</button>
             </div>
         </div>
+
+        <div id="pipelineAnalytics" class="tool">
+            <h2>Pipeline Analytics</h2>
+            <button onclick="renderPipelineAnalytics()" style="margin-bottom:20px;">Refresh Analytics</button>
+            <div id="pipelineAnalyticsResult"></div>
+        </div>
     </div>
     <script src="charts.js"></script>
     <script src="export.js"></script>
@@ -995,6 +1002,7 @@
     <script src="meetingprep.js"></script>
     <script src="scoring.js"></script>
     <script src="kpi.js"></script>
+    <script src="pipeline.js"></script>
     <script src="sharing.js"></script>
     <script src="nav.js"></script>
     <script src="darkmode.js"></script>
