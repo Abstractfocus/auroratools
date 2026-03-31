@@ -1,0 +1,45 @@
+<div id="weightedScoring" class="tool">
+    <h2>Weighted Scoring Model</h2>
+
+    <!-- Add Criterion -->
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3 style="margin-top: 0; color: #0A0A2A;">Criteria</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+            <div class="input-group" style="margin-bottom: 0; flex: 2; min-width: 160px;">
+                <label for="scoringCriterionName">Criterion Name</label>
+                <input type="text" id="scoringCriterionName" placeholder="e.g. Cost, Quality, Support">
+            </div>
+            <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 100px;">
+                <label for="scoringCriterionWeight">Weight (1-10)</label>
+                <input type="number" id="scoringCriterionWeight" min="1" max="10" value="5">
+            </div>
+            <button onclick="addCriterion()" style="height: 38px;">Add Criterion</button>
+        </div>
+        <div id="scoringCriteriaList" style="margin-top: 10px;"></div>
+    </div>
+
+    <!-- Add Option -->
+    <div style="margin-bottom: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3 style="margin-top: 0; color: #0A0A2A;">Options</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+            <div class="input-group" style="margin-bottom: 0; flex: 2; min-width: 160px;">
+                <label for="scoringOptionName">Option Name</label>
+                <input type="text" id="scoringOptionName" placeholder="e.g. Vendor A, Strategy 1">
+            </div>
+            <button onclick="addOption()" style="height: 38px;">Add Option</button>
+        </div>
+        <div id="scoringOptionsList" style="margin-top: 10px;"></div>
+    </div>
+
+    <!-- Scoring Form (dynamic) -->
+    <div id="scoringFormArea" style="margin-bottom: 20px;"></div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button onclick="calculateWeightedScores()">Calculate Scores</button>
+        <button onclick="clearScoring()" style="background-color: #dc3545;">Clear All</button>
+        <button onclick="exportScoringCSV()" style="background-color: #6f42c1;">Export CSV</button>
+    </div>
+
+    <div id="scoringResult" style="margin-top: 20px;"></div>
+</div>

@@ -1,0 +1,66 @@
+<div id="clientTracker" class="tool">
+    <h2>Client Tracker</h2>
+
+    <div class="input-group">
+        <label for="crmClientName">Client Name *</label>
+        <input type="text" id="crmClientName" placeholder="Enter client name">
+    </div>
+    <div class="input-group">
+        <label for="crmClientCompany">Company *</label>
+        <input type="text" id="crmClientCompany" placeholder="Enter company name">
+    </div>
+    <div class="input-group">
+        <label for="crmClientEmail">Email</label>
+        <input type="text" id="crmClientEmail" placeholder="Enter email address">
+    </div>
+    <div class="input-group">
+        <label for="crmClientPhone">Phone</label>
+        <input type="text" id="crmClientPhone" placeholder="Enter phone number">
+    </div>
+    <div class="input-group">
+        <label for="crmClientIndustry">Industry</label>
+        <input type="text" id="crmClientIndustry" placeholder="Enter industry">
+    </div>
+    <div class="input-group">
+        <label for="crmClientStage">Deal Stage</label>
+        <select id="crmClientStage">
+            <option value="Lead">Lead</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Proposal Sent">Proposal Sent</option>
+            <option value="Negotiation">Negotiation</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="crmClientNotes">Notes</label>
+        <input type="text" id="crmClientNotes" placeholder="Enter notes">
+    </div>
+    <div class="input-group">
+        <label for="crmClientFollowUp">Follow-Up Date</label>
+        <input type="date" id="crmClientFollowUp">
+    </div>
+
+    <button onclick="addClient()">Add Client</button>
+
+    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 160px;">
+            <label for="crmFilterStage">Filter by Stage</label>
+            <select id="crmFilterStage">
+                <option value="">All Stages</option>
+                <option value="Lead">Lead</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Proposal Sent">Proposal Sent</option>
+                <option value="Negotiation">Negotiation</option>
+                <option value="Won">Won</option>
+                <option value="Lost">Lost</option>
+            </select>
+        </div>
+        <div class="input-group" style="margin-bottom: 0; flex: 1; min-width: 200px;">
+            <label for="crmSearch">Search by Name / Company</label>
+            <input type="text" id="crmSearch" placeholder="Search clients...">
+        </div>
+    </div>
+
+    <div id="crmResult"></div>
+</div>

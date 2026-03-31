@@ -1,0 +1,61 @@
+        <div id="proposalGenerator" class="tool">
+            <h2>Proposal Generator</h2>
+            <div class="input-group">
+                <label for="proposalClientName">Client Name</label>
+                <input type="text" id="proposalClientName" placeholder="Enter client name">
+            </div>
+            <div class="input-group">
+                <label for="proposalClientCompany">Client Company</label>
+                <input type="text" id="proposalClientCompany" placeholder="Enter client company">
+            </div>
+            <div class="input-group">
+                <label for="proposalIndustry">Industry</label>
+                <select id="proposalIndustry">
+                    <option value="">-- Select Industry --</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="proposalEngagement">Engagement Type</label>
+                <select id="proposalEngagement">
+                    <option value="">-- Select Engagement Type --</option>
+                    <option value="Digital Transformation">Digital Transformation</option>
+                    <option value="Technology Audit">Technology Audit</option>
+                    <option value="Process Optimization">Process Optimization</option>
+                    <option value="Cybersecurity Assessment">Cybersecurity Assessment</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="proposalScope">Scope</label>
+                <select id="proposalScope">
+                    <option value="">-- Select Scope --</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="Enterprise">Enterprise</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="proposalChallenges">Key Challenges</label>
+                <textarea id="proposalChallenges" rows="4" placeholder="Describe the key challenges your client is facing..."></textarea>
+            </div>
+            <div class="input-group">
+                <label for="proposalBudget">Budget Range</label>
+                <select id="proposalBudget">
+                    <option value="">-- Select Budget Range --</option>
+                    <option value="$10K-$25K">$10K-$25K</option>
+                    <option value="$25K-$50K">$25K-$50K</option>
+                    <option value="$50K-$100K">$50K-$100K</option>
+                    <option value="$100K-$250K">$100K-$250K</option>
+                    <option value="$250K+">$250K+</option>
+                </select>
+            </div>
+            <button onclick="generateProposal()">Generate Proposal</button>
+            <div id="proposalResult"></div>
+        </div>

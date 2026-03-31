@@ -1,0 +1,61 @@
+<div id="dashboard" class="tool">
+    <h2>Client Progress Dashboard</h2>
+
+    <div class="input-group">
+        <label for="dashClientName">New Client Name</label>
+        <input type="text" id="dashClientName" placeholder="Enter client name">
+    </div>
+    <button onclick="addDashboardClient()">Add Client</button>
+
+    <div id="dashClientList" style="margin-top:15px;"></div>
+
+    <hr style="margin:20px 0;border-color:#ddd;">
+
+    <div class="input-group">
+        <label for="dashClientSelect">Select Client</label>
+        <select id="dashClientSelect"></select>
+    </div>
+
+    <div class="input-group">
+        <label for="dashSnapshotDate">Snapshot Date</label>
+        <input type="date" id="dashSnapshotDate">
+    </div>
+
+    <div class="input-group">
+        <label for="dashScore-BusinessOperations">Business Operations (1-5)</label>
+        <input type="number" id="dashScore-BusinessOperations" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-BusinessDevelopment">Business Development (1-5)</label>
+        <input type="number" id="dashScore-BusinessDevelopment" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-Technology">Technology (1-5)</label>
+        <input type="number" id="dashScore-Technology" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-CloudAdoption">Cloud Adoption (1-5)</label>
+        <input type="number" id="dashScore-CloudAdoption" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-DataAnalytics">Data & Analytics (1-5)</label>
+        <input type="number" id="dashScore-DataAnalytics" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-Automation">Automation (1-5)</label>
+        <input type="number" id="dashScore-Automation" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-Security">Security (1-5)</label>
+        <input type="number" id="dashScore-Security" min="1" max="5" placeholder="1-5">
+    </div>
+    <div class="input-group">
+        <label for="dashScore-Culture">Culture (1-5)</label>
+        <input type="number" id="dashScore-Culture" min="1" max="5" placeholder="1-5">
+    </div>
+
+    <button onclick="addSnapshot()">Add Snapshot</button>
+    <button onclick="renderTrends()">View Trends</button>
+
+    <div id="dashboardResult"></div>
+</div>

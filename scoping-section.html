@@ -1,0 +1,64 @@
+<div id="engagementScoping" class="tool">
+    <h2>Engagement Scoping Template</h2>
+    <div class="input-group">
+        <label for="scopeClientName">Client Name</label>
+        <input type="text" id="scopeClientName" placeholder="Enter client name">
+    </div>
+    <div class="input-group">
+        <label>Business Operations Score (1-5)</label>
+        <input type="range" min="1" max="5" value="3" step="0.5" id="scopeBizOps">
+        <div class="slider-labels">
+            <span>Weak</span>
+            <span class="slider-value" id="scopeBizOps-value">3</span>
+            <span>Strong</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label>Business Development Score (1-5)</label>
+        <input type="range" min="1" max="5" value="3" step="0.5" id="scopeBizDev">
+        <div class="slider-labels">
+            <span>Weak</span>
+            <span class="slider-value" id="scopeBizDev-value">3</span>
+            <span>Strong</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label>Technology Score (1-5)</label>
+        <input type="range" min="1" max="5" value="3" step="0.5" id="scopeTech">
+        <div class="slider-labels">
+            <span>Weak</span>
+            <span class="slider-value" id="scopeTech-value">3</span>
+            <span>Strong</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label>Digital Readiness Score (1-5)</label>
+        <input type="range" min="1" max="5" value="3" step="0.5" id="scopeReadiness">
+        <div class="slider-labels">
+            <span>Low</span>
+            <span class="slider-value" id="scopeReadiness-value">3</span>
+            <span>High</span>
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="scopeRevenue">Annual Revenue (USD)</label>
+        <input type="number" id="scopeRevenue" placeholder="Enter annual revenue">
+    </div>
+    <div class="input-group">
+        <label for="scopeEmployees">Employee Count</label>
+        <input type="number" id="scopeEmployees" placeholder="Enter employee count">
+    </div>
+    <div class="input-group">
+        <label for="scopeGoal">Primary Goal</label>
+        <select id="scopeGoal">
+            <option value="">-- Select Goal --</option>
+            <option value="Increase Revenue">Increase Revenue</option>
+            <option value="Reduce Costs">Reduce Costs</option>
+            <option value="Improve Efficiency">Improve Efficiency</option>
+            <option value="Digital Transformation">Digital Transformation</option>
+            <option value="All of the Above">All of the Above</option>
+        </select>
+    </div>
+    <button onclick="generateScope()">Generate Scope</button>
+    <div id="scopingResult"></div>
+</div>
